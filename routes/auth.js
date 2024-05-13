@@ -9,7 +9,7 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup");
 })
 
-router.post("confirm_email", (req, res) => {
+router.get("/confirm_email", (req, res) => {
   res.render("auth/confirm_email");
 })
 
