@@ -5,7 +5,7 @@ export class Room {
    * @param {String} name
    * @param {String} description
    */
-  create = (name, description) => {
+  static create = (name, description) => {
     // ↓↓↓ ここに処理を書く
 
     // ↑↑↑ ここに処理を書く
