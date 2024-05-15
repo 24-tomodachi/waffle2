@@ -14,3 +14,6 @@ npm i
 ```sh
 npm run dev
 ```
+
+4. ブラウザからアクセスする
+http://localhost:3000/
