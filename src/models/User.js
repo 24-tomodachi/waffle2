@@ -6,9 +6,17 @@ export class User {
    * @param {string} password_hash パスワード
    * @returns {string} 作成したユーザーのID
    */
-  static create(name, email, password_hash) {
-    // ↓↓↓ ここに処理を書く ↓↓↓
+  static async create(name, email, password_hash) {
+    const { data, error } = await supabase
+      .from('users')
+      .insert([
+        { name, email, password_hash }
+      ])
+      .select('id')
 
-    // ↑↑↑ ここに処理を書く ↑↑↑
+    if (error) {
+      throw new Error(`User creation failed: ${error.message}`);
+    }
+    return data[0].id;
   }
 }
