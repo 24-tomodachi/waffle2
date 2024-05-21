@@ -9,6 +9,10 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup");
 })
 
+router.post("/signup", () => {
+  // postされたときにしたいこと
+});
+
 router.get("/confirm_email", (req, res) => {
   res.render("auth/confirm_email");
 })
