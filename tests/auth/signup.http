@@ -1,0 +1,3 @@
+curl -X POST http://localhost:3000/auth/signup \
+     -H "Content-Type: application/json" \
+     -d '{"email": "hoge@hoge.com", "password": "hugahuga"}'
