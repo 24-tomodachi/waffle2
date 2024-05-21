@@ -1,11 +1,14 @@
 body {
+    /*
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #EAC086;
+    background-color: #EFCA83;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    */
+    background-image: url(/image/waffle1.png);
 }
 
 .container {
@@ -13,14 +16,14 @@ body {
 }
 
 h1 {
-    font-size: 48px;
-    color: #B68B6D;
+    font-size: 4em;
+    color: #A16452;
     margin-bottom: 20px;
 }
 
 .login-box {
-    background-color: #8B5B43;
-    padding: 20px;
+    background-color: #A16452;
+    padding: 40px;
     border-radius: 8px;
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -34,25 +37,31 @@ label {
 }
 
 input {
-    width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 20px;
     border: none;
     border-radius: 4px;
+    font-size: 1.2em;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #EAC086;
+    background-color: #EFCA83;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+
+    padding: 10px;
+    background-color: #EFCA83;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    color: #A16452;
 }
 
 button:hover {
-    background-color: #D7A77E;
+    background-color: #d4a554;
 }
 
 .register-link {
