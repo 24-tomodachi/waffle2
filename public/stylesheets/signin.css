@@ -1,5 +1,4 @@
 body {
-    /*
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #EFCA83;
@@ -7,8 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    */
-    background-image: url(/image/waffle1.png);
+    /*background-image: url(/image/waffle1.png);*/
 }
 
 .container {
