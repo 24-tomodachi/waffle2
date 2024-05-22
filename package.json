@@ -7,9 +7,6 @@
     "dev": "nodemon ./bin/www",
     "test": "jest"
   },
-  "_moduleAliases": {
-    "@": "."
-  },
   "dependencies": {
     "@supabase/supabase-js": "^2.43.2",
     "cookie-parser": "~1.4.4",

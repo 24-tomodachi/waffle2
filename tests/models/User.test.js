@@ -1,4 +1,4 @@
-const UserModel = require('@/src/models/User');
+const UserModel = require('../../src/models/User');
 
 describe('UserModel', () => {
   describe('create', () => {
