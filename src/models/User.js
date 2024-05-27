@@ -22,6 +22,26 @@ const UserModel = {
     return data.id;
   },
 
+
+  /**
+   * ユーザーを id で検索する。
+   * 存在しない場合は null を返す。
+   * @param {string} id ユーザーID
+   * @returns {Object} ユーザー情報
+   */
+  findById: async (id) => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
+      throw new Error(`User search failed: ${error.message}`);
+    }
+    return data;
+  },
+
   /**
    * ユーザーを email で検索する。
    * 存在しない場合は null を返す。
