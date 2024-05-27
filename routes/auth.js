@@ -11,7 +11,10 @@ router.get("/signup", (req, res) => {
 
 router.post("/signup", (req, res) => {
   // 新しいユーザーをデータベースに作成する
-  
+
+  const email = req.body.email
+ const password = req.body.password
+
 
   // サインアップ成功ページにリダイレクトする
   res.redirect('/');
