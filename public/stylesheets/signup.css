@@ -1,11 +1,12 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4c77d;
+    background-color: #EFCA83;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    /*background-image: url(/image/waffle1.png);*/
 }
 
 .container {
@@ -13,14 +14,14 @@ body {
 }
 
 h1 {
-    font-size: 3em;
-    color: #b25d37;
+    font-size: 4em;
+    color: #A16452;
     margin-bottom: 20px;
 }
 
 .login-box {
-    background-color: #8b4e36;
-    padding: 20px;
+    background-color: #A16452;
+    padding: 30px;
     border-radius: 8px;
 }
 
@@ -39,17 +40,17 @@ input {
     margin-bottom: 20px;
     border: none;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 1.2em;
 }
 
 button {
     padding: 10px;
-    background-color: #f4c77d;
+    background-color: #EFCA83;
     border: none;
-    border-radius: 4px;
+    border-radius: 30px;
     font-size: 1em;
     cursor: pointer;
-    color: #8b4e36;
+    color: #A16452;
 }
 
 button:hover {
