@@ -13,13 +13,12 @@ const UserModel = {
       .insert([
         { email, password_hash }
       ])
-      .select('id')
-      .single();
+      .select('id');
 
     if (error) {
       throw new Error(`User creation failed: ${error.message}`);
     }
-    return data.id;
+    return data[0].id;
   },
 
 
@@ -33,13 +32,12 @@ const UserModel = {
     const { data, error } = await supabase
       .from('users')
       .select('*')
-      .eq('id', id)
-      .single();
+      .eq('id', id);
 
     if (error) {
       throw new Error(`User search failed: ${error.message}`);
     }
-    return data;
+    return data[0];
   },
 
   /**
@@ -53,13 +51,12 @@ const UserModel = {
     const { data, error } = await supabase
       .from('users')
       .select('*')
-      .eq('email', email)
-      .single();
+      .eq('email', email);
 
     if (error) {
       throw new Error(`User search failed: ${error.message}`);
     }
-    return data;
+    return data[0];
   }
 
 }
