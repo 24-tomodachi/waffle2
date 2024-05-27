@@ -38,7 +38,7 @@ const UserModel = {
     if (error) {
       throw new Error(`User search failed: ${error.message}`);
     }
-    return data;
+    return data[0];
   }
 
 }
