@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const user = require('../src/models/User');
+const User = require('../src/models/User');
 
 router.get("/signin", (req, res) => {
   res.render("auth/signin");
@@ -10,13 +10,14 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup");
 })
 
-router.post("/signup", (req, res) => {
-  // 新しいユーザーをデータベースに作成する
-
+router.post("/signup", async (req, res) => {
   const email = req.body.email
- const password = req.body.password
+  const password = req.body.password
 
-
+  // emailが存在してたら処理を中断
+  if(await User.findByEmail(email)) {
+    return res.redirect("/auth/signup");
+  }
   // サインアップ成功ページにリダイレクトする
   res.redirect('/');
 });
