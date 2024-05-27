@@ -28,25 +28,46 @@ describe('User', () => {
     // TODO: 異常系
   });
 
-  describe('User#findByEmail', () => {
+  describe('User#findById', () => {
     // 正常系
-    it('正常なメールアドレスが与えられた場合、問題なく検索できるか', async () => {
+    it('正常なIDが与えられた場合、問題なく検索できるか', async () => {
       const { data, error } = await supabase
         .from('users')
         .insert([
           { email, password_hash }
         ]);
 
-      const user = await User.findByEmail(email);
+      const { id } = data;
+      const user = await User.findById(id);
       expect(user).not.toBeNull();
 
       // 登録したデータを削除
       const { data: deleteData, deleteError } = await supabase
         .from('users')
         .delete()
-        .eq('id', user.id);
-    })
+        .eq('id', id);
+    });
+  });
 
-    // TODO: 異常系
-  })
-});
+    describe('User#findByEmail', () => {
+      // 正常系
+      it('正常なメールアドレスが与えられた場合、問題なく検索できるか', async () => {
+        const { data, error } = await supabase
+          .from('users')
+          .insert([
+            { email, password_hash }
+          ]);
+
+        const user = await User.findByEmail(email);
+        expect(user).not.toBeNull();
+
+        // 登録したデータを削除
+        const { data: deleteData, deleteError } = await supabase
+          .from('users')
+          .delete()
+          .eq('id', user.id);
+      })
+
+      // TODO: 異常系
+    })
+  });
