@@ -2,15 +2,25 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #EFCA83;
+    /*background: url('/image/waffle1') ;*/
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /*background-image: url(/image/waffle1.png);*/
+
+    /*font-family: 'Segoe UI Black','Hannotate TC',sans-serif;
+    background: url('/image/waffle1') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;*/
 }
 
 .container {
     text-align: center;
+    margin-top: 60px;
 }
 
 h1 {
@@ -23,6 +33,11 @@ h1 {
     background-color: #A16452;
     padding: 30px;
     border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 label {
@@ -57,7 +72,7 @@ button:hover {
 }
 
 .register-link a {
-    color: #000000;
+    color: #586e7f;
     text-decoration: none;
 }
 
