@@ -14,6 +14,10 @@ router.get("/confirm_email", (req, res) => {
 })
 
 router.get("/room-choice", (req, res) => {
+  res.render("auth/completed_email");
+})
+
+router.get("/room-choice", (req, res) => {
   res.render("auth/room-choice");
 })
 
