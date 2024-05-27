@@ -33,8 +33,7 @@ const UserModel = {
     const { data, error } = await supabase
       .from('users')
       .select('*')
-      .eq('email', email)
-      .single();
+      .eq('email', email);
 
     if (error) {
       throw new Error(`User search failed: ${error.message}`);
