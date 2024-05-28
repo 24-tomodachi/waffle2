@@ -35,7 +35,9 @@ describe('User', () => {
         .from('users')
         .insert([
           { email, password_hash }
-        ]);
+        ])
+        .select('id')
+        .single();
 
       const { id } = data;
       const user = await User.findById(id);
