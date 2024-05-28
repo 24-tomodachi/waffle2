@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^0.44.1",
     "@supabase/supabase-js": "^2.43.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
