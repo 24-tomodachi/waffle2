@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../src/models/User');
+const bcrypt = require('bcrypt');
 
 router.get("/signin", (req, res) => {
   res.render("auth/signin");
@@ -18,6 +19,10 @@ router.post("/signup", async (req, res) => {
   if(await User.findByEmail(email)) {
     return res.redirect("/auth/signup");
   }
+
+  const salt = await bcrypt.genSalt(10);
+  const password_hash = await bcrypt.hash(password, salt)
+  
   // サインアップ成功ページにリダイレクトする
   res.redirect('/');
 });
