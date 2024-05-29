@@ -22,6 +22,8 @@ router.post("/signup", async (req, res) => {
 
   const salt = await bcrypt.genSalt(10);
   const password_hash = await bcrypt.hash(password, salt)
+
+  User.create(email, password_hash);
   
   // サインアップ成功ページにリダイレクトする
   res.redirect('/');
