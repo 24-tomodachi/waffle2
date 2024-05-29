@@ -13,13 +13,31 @@ const UserModel = {
       .insert([
         { email, password_hash }
       ])
-      .select('id')
-      .single();
+      .select('id');
 
     if (error) {
       throw new Error(`User creation failed: ${error.message}`);
     }
-    return data.id;
+    return data[0].id;
+  },
+
+
+  /**
+   * ユーザーを id で検索する。
+   * 存在しない場合は null を返す。
+   * @param {string} id ユーザーID
+   * @returns {Object} ユーザー情報
+   */
+  findById: async (id) => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', id);
+
+    if (error) {
+      throw new Error(`User search failed: ${error.message}`);
+    }
+    return data[0];
   },
 
   /**

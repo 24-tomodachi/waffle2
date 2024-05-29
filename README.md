@@ -1,4 +1,5 @@
-## 環境構築
+# 環境構築
+## 必須
 1. リポジトリをクローンする
 ```sh
 git clone git@github.com:24-tomodachi/waffle2.git
