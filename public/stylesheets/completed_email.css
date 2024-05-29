@@ -1,39 +1,42 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #EFCA83;
+    /*background-color: #EFCA83;*/
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url('/image/waffle1.png');
+    background-size: cover;
 }
 
 .container {
     text-align: center;
-    margin-top: -158px;
+    margin-top: -143px;
 }
 
 h1 {
     font-size: 4em;
-    color: #A16452;
+    color: #ffffff;
     margin: 0;
 }
 
 p {
     font-size: 1.2em;
-    color: #000000;
+    color: #ffffff;
 }
 
 button {
     padding: 10px;
-    background-color: #A16452;
+    background-color: #ffffff;
     border: none;
     border-radius: 30px;
     font-size: 1em;
     cursor: pointer;
-    color: #ffffff;
+    color: #A16452;
+    width: 180px;
 }
 
 button:hover {
-    background-color: #694236;
+    background-color: #dddddd;
 }
