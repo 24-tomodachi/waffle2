@@ -1,21 +1,11 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #EFCA83;
-    /*background: url('/image/waffle1') ;*/
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-
-    /*font-family: 'Segoe UI Black','Hannotate TC',sans-serif;
-    background: url('/image/waffle1') no-repeat center center fixed;
+    background-image: url('/image/waffle1.png');
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;*/
 }
 
 .container {
@@ -25,7 +15,6 @@ body {
 
 h1 {
     font-size: 4em;
-    color: #A16452;
     margin-bottom: 20px;
 }
 
@@ -55,7 +44,7 @@ input {
 
 button {
     padding: 10px;
-    background-color: #EFCA83;
+    background-color: #ffeca1;
     border: none;
     border-radius: 30px;
     font-size: 1em;
@@ -64,7 +53,7 @@ button {
 }
 
 button:hover {
-    background-color: #d4a554;
+    background-color: #d2c385;
 }
 
 .register-link {
@@ -72,10 +61,25 @@ button:hover {
 }
 
 .register-link a {
-    color: #586e7f;
+    color: #ffffff;
     text-decoration: none;
 }
 
 .register-link a:hover {
     text-decoration: underline;
 }
+
+/*フォント英語専用*/
+.poetsen-one-regular {
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+  }
+/*フォント日本語専用*/
+.kosugi-maru-regular {
+    font-family: "Kosugi Maru", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  

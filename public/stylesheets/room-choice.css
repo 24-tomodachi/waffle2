@@ -1,5 +1,5 @@
 body {
-    background-color: #DEB887; /* 背景色 */
+    background-color: #EFCA83; /* 背景色 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,7 @@ body {
 }
 
 .custom-button {
-    background-color: #8B5A2B; /* ボタンの背景色 */
+    background-color: #A16452; /* ボタンの背景色 */
     color: white; /* ボタンのテキスト色 */
     border: none;
     padding: 30px 60px;
