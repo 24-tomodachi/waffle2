@@ -20,7 +20,7 @@ npm run dev
 ```
 
 5. ブラウザから表示する
-- http://localhost:3000[](url)
+http://localhost:3000
 
 ## 任意
 ### テスト環境を構築する
