@@ -5,7 +5,7 @@ const VerificationToken = require('../../src/models/VerificationToken');
 describe('VerificationToken', () => {
 
   describe('VerificationToken#create', () => {
-    it('should create a verification token successfully', async () => {
+    it('データの新規登録が正常に行えるか', async () => {
       const userId = 1;
       const token = uuidv4();
 
@@ -23,12 +23,12 @@ describe('VerificationToken', () => {
       const { data: deleteData, deleteError } = await supabase
         .from('verification_tokens')
         .delete()
-        .eq('id', verificationToken.id);
+        .eq('user_id', verificationToken.user_id);
     });
   });
 
   describe('VerificationToken#findByToken', () => {
-    it('should find a verification token by token successfully', async () => {
+    it('トークンを用いた検索が正常に行えるか', async () => {
       const userId = 1;
       const token = "00000000-0000-0000-0000-000000000001";
       const { data, error } = await supabase
@@ -36,17 +36,11 @@ describe('VerificationToken', () => {
         .insert([
           { user_id: userId, token }
         ])
-        .select('id')
+        .select('*')
         .single();
 
-      const { id } = data;
       const verificationToken = await VerificationToken.findByToken(token);
       expect(verificationToken).not.toBeNull();
-
-      const { data: deleteData, deleteError } = await supabase
-        .from('verification_tokens')
-        .delete()
-        .eq('id', id);
     });
   });
 });
