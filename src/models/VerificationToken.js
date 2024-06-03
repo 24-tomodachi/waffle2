@@ -14,7 +14,7 @@ const VerificationToken = {
       .insert([
         { user_id: userId, token }
       ])
-      .select('id');
+      .select('*');
 
     if (error) {
       throw new Error(`Verification token creation failed: ${error.message}`);
