@@ -1,4 +1,4 @@
-const v4 = require('uuid').v4;
+const uuidv4 = require('uuid').v4;
 const supabase = require('../../src/libs/supabase');
 const VerificationToken = require('../../src/models/VerificationToken');
 
