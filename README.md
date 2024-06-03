@@ -11,7 +11,7 @@ cd waffle2
 npm i
 ```
 
-3. `.env.development.local` ファイルを作成
+3. リポジトリのルートに `.env.development.local` ファイルを作成
 - 中身は [これ](https://discord.com/channels/1227430023808417822/1245541355229413386/1245541386204479569) をコピー
 
 4. 起動する
