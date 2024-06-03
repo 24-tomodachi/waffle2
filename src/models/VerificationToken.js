@@ -20,5 +20,26 @@ const VerificationTokenModel = {
       throw new Error(`Verification token creation failed: ${error.message}`);
     }
     return data[0];
-  }
+  },
+
+  /**
+   * トークンから検索する。
+   * 存在しない場合は null を返す。
+   * @param {string} token 認証トークン
+   * @returns {Object} トークンのデータ
+   * @throws {Error} DB操作に失敗した場合
+   */
+  findByToken: async (token) => {
+    const { data, error } = await supabase
+      .from('verification_tokens')
+      .select('*')
+      .eq('token', token);
+
+    if (error) {
+      throw new Error(`Verification token search failed: ${error.message}`);
+    }
+    return data[0];
+  },
 }
+
+module.exports = VerificationTokenModel;
