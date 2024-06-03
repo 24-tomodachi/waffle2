@@ -1,6 +1,7 @@
 const supabase = require('../libs/supabase');
 
 const UserModel = {
+  // TODO: return するデータをid => すべてに変更
   /**
    * @param {string} email メールアドレス
    * @param {string} password_hash パスワード
