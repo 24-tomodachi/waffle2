@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../src/models/User');
-const bcrypt = require('bcrypt');
 const AuthController = require('../src/controllers/AuthController');
 
 router.get("/signin", (req, res) => {
