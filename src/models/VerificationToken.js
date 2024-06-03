@@ -8,17 +8,17 @@ const VerificationTokenModel = {
    * @returns {Object} 作成したトークンのデータ
    * @throws {Error} DB操作に失敗した場合
    */
-}
-create: async (userId, token) => {
-  const { data, error } = await supabase
-    .from('verification_tokens')
-    .insert([
-      { user_id: userId, token }
-    ])
-    .select('id');
+  create: async (userId, token) => {
+    const { data, error } = await supabase
+      .from('verification_tokens')
+      .insert([
+        { user_id: userId, token }
+      ])
+      .select('id');
 
-  if (error) {
-    throw new Error(`Verification token creation failed: ${error.message}`);
+    if (error) {
+      throw new Error(`Verification token creation failed: ${error.message}`);
+    }
+    return data[0];
   }
-  return data[0];
 }
