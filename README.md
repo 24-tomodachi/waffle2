@@ -1,4 +1,5 @@
-## 環境構築
+# 環境構築
+## 必須
 1. リポジトリをクローンする
 ```sh
 git clone git@github.com:24-tomodachi/waffle2.git
@@ -14,3 +15,6 @@ npm i
 ```sh
 npm run dev
 ```
+
+4. ブラウザから表示する
+http://localhost:3000
