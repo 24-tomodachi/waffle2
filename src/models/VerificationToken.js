@@ -42,4 +42,4 @@ const VerificationToken = {
   },
 }
 
-module.exports = VerificationTokenModel;
+module.exports = VerificationToken;
