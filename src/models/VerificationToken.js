@@ -1,4 +1,4 @@
-const supabase = require('../lib/supabase');
+const supabase = require('../libs/supabase');
 const { create } = require('./User');
 
 const VerificationToken = {
