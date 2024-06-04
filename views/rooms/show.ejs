@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameBoy like Canvas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <canvas id="display" width="400" height="300"></canvas>
+    <div class="buttons">
+      <div class="buttons__move">
+        <button id="up">↑</button>
+        <button id="left">←</button>
+        <button id="right">→</button>
+        <button id="down">↓</button>
+      </div>
+    </div>
+    <div class="sidebar hidden">
+      <button id="profile">プロフィール</button>
+      <button id="logout">ログアウト</button>
+    </div>
+    <div class="sidebar-toggle" id="toggle-sidebar">▶</div>
+    <div class="reaction-selector">
+      <button id="toggle-reactions">▼</button>
+      <div class="reactions hidden">
+        <button class="reaction" data-reaction="😊">😊</button>
+        <button class="reaction" data-reaction="😢">😢</button>
+        <button class="reaction" data-reaction="😠">😠</button>
+        <button class="reaction" data-reaction="😂">😂</button>
+        <button class="reaction" data-reaction="😍">😍</button>
+        <button class="reaction" data-reaction="😎">😎</button>
+      </div>
+    </div>
+  </main>
+  <script>
+    // HTML要素を取得
+    const canvas = document.getElementById('display');
+    const ctx = canvas.getContext('2d');
+
+    // キャラクターオブジェクトの定義
+    const character = {
+        x: 10,
+        y: 2,
+        width: 16, // 画像の幅
+        height: 16, // 画像の高さ
+        speed: 1,
+        isSitting: false, // 座っているかどうかを示すフラグ
+        sittingX: 0, // 座っていた位置のX座標
+        sittingY: 0, // 座っていた位置のY座標
+        image: new Image(), // Imageオブジェクトを作成
+        draw: function () {
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height); // 画像を描画
+        }
+    };
+
+    // キャラクターの画像のパス
+    character.image.src = './image/icon.png'; // 画像のパスを指定
+
+    // 机と椅子の画像の読み込み
+    const deskImage = new Image();
+    deskImage.src = './image/tukue.jpg';
+
+    const chairImage = new Image();
+    chairImage.src = './image/椅子　下向き.png';
+
+    const chairueImage = new Image();
+    chairueImage.src = './image/isu uemuki.png';
+
+    const hunsuiImage = new Image();
+    hunsuiImage.src = './image/hunsui3.png';
+
+    const kiImage = new Image();
+    kiImage.src = './image/ki2.png';
+
+    // 障害物の定義
+    let obstacles = [];
+
+    // JSONファイルのパス
+    const obstaclesDataPath = 'obstacles.json';
+
+    // JSONファイルから障害物を読み込む関数
+    async function loadObstacles() {
+        try {
+            const response = await fetch(obstaclesDataPath);
+            obstacles = await response.json();
+            console.log('Obstacles loaded:', obstacles);
+        } catch (error) {
+            console.error('Error loading obstacles:', error);
+        }
+    }
+
+    // キャラクターと障害物が衝突しているかを判定する関数
+    function isColliding(rect1, rect2) {
+        return rect1.x < rect2.x + rect2.width &&
+               rect1.x + rect1.width > rect2.x &&
+               rect1.y < rect2.y + rect2.height &&
+               rect1.y + rect1.height > rect2.y;
+    }
+
+    // キャラクターが指定された座標に移動できるかを判定する関数
+    function canMoveTo(x, y) {
+        for (let obstacle of obstacles) {
+            if (isColliding({ x, y, width: character.width, height: character.height }, obstacle)) {
+                return false; // 移動できない
+            }
+        }
+        return true; // 移動できる
+    }
+
+    // キャラクターを移動する関数
+    function moveCharacter(dx, dy) {
+        const newX = character.x + dx;
+        const newY = character.y + dy;
+
+        // 画面の端に来たら止まる
+        if (newX < 0) {
+            character.x = 0;
+        } else if (newX + character.width > canvas.width) {
+            character.x = canvas.width - character.width;
+        } else if (newY < 0) {
+            character.y = 0;
+        } else if (newY + character.height > canvas.height) {
+            character.y = canvas.height - character.height;
+        } else {
+            if (canMoveTo(newX, newY)) {
+                character.x = newX;
+                character.y = newY;
+            }
+        }
+    }
+
+    // キーボードの入力に応じてキャラクターを移動させるイベントリスナー
+    window.addEventListener('keydown', function (e) {
+        switch (e.key) {
+            case 'ArrowUp':
+            case 'w':
+            case 'W':
+                moveCharacter(0, -character.speed);
+                break;
+            case 'ArrowDown':
+            case 's':
+            case 'S':
+                moveCharacter(0, character.speed);
+                break;
+            case 'ArrowLeft':
+            case 'a':
+            case 'A':
+                moveCharacter(-character.speed, 0);
+                break;
+            case 'ArrowRight':
+            case 'd':
+            case 'D':
+                moveCharacter(character.speed, 0);
+                break;
+            case ' ':
+                if (character.isSitting) {
+                    // 椅子に座っている状態でスペースキーが押されたら、座っていた位置に戻る
+                    character.isSitting = false;
+                    character.x = character.sittingX;
+                    character.y = character.sittingY;
+                } else {
+                    // 椅子のチェックを行う
+                    checkForChairCollision();
+                }
+                break;
+        }
+    });
+
+    // 椅子のチェックを行う関数
+    function checkForChairCollision() {
+        const chairObstacles = obstacles.filter(obstacle => obstacle.name.includes("椅子") || obstacle.name.includes("上"));
+        const characterX = character.x + character.width / 2;
+        const characterY = character.y + character.height / 2;
+        const chairsData = chairObstacles.map(obstacle => {
+            const centerX = obstacle.x + obstacle.width / 2;
+            const centerY = obstacle.y + obstacle.height / 2;
+            const radius = 30; // 半径30の円形領域を設定
+            return { centerX, centerY, radius };
+        });
+
+        let nearestChairIndex = -1;
+        let minDistance = Number.MAX_SAFE_INTEGER;
+        for (let i = 0; i < chairsData.length; i++) {
+            const distanceToChair = Math.sqrt(Math.pow(characterX - chairsData[i].centerX, 2) + Math.pow(characterY - chairsData[i].centerY, 2));
+            if (distanceToChair <= chairsData[i].radius && distanceToChair < minDistance) {
+                minDistance = distanceToChair;
+                nearestChairIndex = i;
+            }
+        }
+
+        if (nearestChairIndex !== -1) {
+            const nearestChair = chairObstacles[nearestChairIndex];
+            character.sittingX = character.x;
+            character.sittingY = character.y;
+            character.x = nearestChair.x;
+            character.y = nearestChair.y;
+            character.isSitting = true;
+        }
+    }
+
+    // リアクションセレクターのHTML要素
+    const reactionSelector = document.querySelector('.reaction-selector');
+    const toggleReactionsButton = document.getElementById('toggle-reactions');
+    const reactionsDiv = document.querySelector('.reactions');
+
+    // リアクションボタンの表示/非表示を切り替える
+    toggleReactionsButton.addEventListener('click', () => {
+        reactionsDiv.classList.toggle('hidden');
+    });
+
+    // リアクションボタンのクリックを処理
+    document.querySelectorAll('.reaction').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const reaction = event.target.getAttribute('data-reaction');
+            showReaction(reaction);
+            reactionsDiv.classList.add('hidden'); // リアクション選択後にリアクションを非表示にする
+        });
+    });
+
+    // キャラクターの上にリアクションを表示する関数
+    function showReaction(reaction) {
+        const reactionElement = document.createElement('div');
+        reactionElement.textContent = reaction;
+        reactionElement.classList.add('reaction-display');
+
+        // キャンバスの位置を取得
+        const canvasRect = canvas.getBoundingClientRect();
+        reactionElement.style.left = `${character.x * 3.2}px`;
+        reactionElement.style.top = `${character.y * 1.9}px`; // キャラクターの真上に表示
+
+        document.body.appendChild(reactionElement);
+
+        setTimeout(() => {
+            reactionElement.remove();
+        }, 2400); // 2.4秒後に削除
+    }
+
+    const sidebar = document.querySelector('.sidebar');
+    const toggleSidebarButton = document.getElementById('toggle-sidebar');
+
+    toggleSidebarButton.addEventListener('click', () => {
+        sidebar.classList.toggle('active'); // activeクラスをトグルしてサイドバーを表示/非表示にする
+        toggleSidebarButton.classList.toggle('active'); // ボタンの状態も変更する
+    });
+
+    // ゲームのメインループ内で吹き出し風メッセージを描画
+    function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // 画面をクリア
+
+        // 障害物の描画
+        for (let obstacle of obstacles) {
+            if (obstacle.name.includes("机")) {
+                ctx.drawImage(deskImage, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            } else if (obstacle.name.includes("椅子")) {
+                ctx.drawImage(chairImage, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            } else if (obstacle.name.includes("上")) {
+                ctx.drawImage(chairueImage, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            } else if (obstacle.name.includes("噴水")) {
+                ctx.drawImage(hunsuiImage, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            } else if (obstacle.name.includes("木")) {
+                ctx.drawImage(kiImage, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            } else {
+                ctx.fillStyle = 'brown';
+                ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            }
+        }
+
+        // キャラクターの描画
+        character.draw();
+
+        // 次のフレームの描画をリクエスト
+        requestAnimationFrame(update);
+    }
+
+    // ゲームのメインループを開始
+    function startGame() {
+        loadObstacles().then(() => {
+            update(); // 最初の画面更新
+        });
+    }
+
+    startGame(); // ゲームの開始
+  </script>
+</body>
+</html>
