@@ -68,7 +68,7 @@ const UserModel = {
   verify: async (id) => {
     const { data, error } = await supabase
       .from('users')
-      .update({ is_active: true })
+      .update({ is_verified: true })
       .eq('id', id)
       .select('*');
 
