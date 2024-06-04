@@ -49,7 +49,18 @@ const AuthController = {
 
     // サインアップ成功ページにリダイレクトする
     res.status(201).redirect('/auth/confirm-email');
-  }
+  },
+
+  verifyEmail: async (req, res) => {
+    const token = req.query.token;
+    const verificationToken = await VerificationToken.findByToken(token);
+    if(!verificationToken) {
+      return res.status(400).redirect('/auth/verify-email', { error: 'Invalid token' });
+    }
+
+    // TODO: ユーザー有効化
+    // TODO: 認証成功画面にリダイレクト
+  },
 }
 
 module.exports = AuthController;
