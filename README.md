@@ -37,6 +37,7 @@ npx supabase login
 - `You are now logged in. Happy coding!` と表示されたら OK
 
 4. CLI とプロジェクトを紐づける
+※この作業の前にプロジェクトにsupabaseアカウントを追加する必要があるので、 よつまで連絡してください
 ```
 npx supabase link --project-ref btomwxhenxidjudolnzs
 ```
