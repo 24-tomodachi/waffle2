@@ -13,13 +13,13 @@ router.get("/signup", (req, res) => {
 router.post("/signup", AuthController.signup);
 
 
-router.get("/confirm_email", (req, res) => {
+router.get("/confirm-email", (req, res) => {
   res.render("auth/confirm_email");
 })
 
-router.get("/verify_email", AuthController.verifyEmail);
+router.get("/verify-email", AuthController.verifyEmail);
 
-router.get("/completed_email", (req, res) => {
+router.get("/completed-email", (req, res) => {
   res.render("auth/completed_email");
 })
 
