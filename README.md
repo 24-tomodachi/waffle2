@@ -34,6 +34,11 @@ git switch main
 git pull
 ```
 
+- ライブラリをインストールしておく
+```
+npm clean-install
+```
+
 - CLIからログインする
 ```sh
 npx supabase login
@@ -63,6 +68,16 @@ npx supabase start
 SUPABASE_URL=<API URL>
 SUPABASE_KEY=<anon key>
 SUPABASE_DB_PASSWORD=
+```
+
+- リモートからデータベース構造を読み込む
+```
+npx supabase db pull
+```
+
+- DB を初期化する
+```
+npx supabase db reset
 ```
 
 - テストを実行してみる
