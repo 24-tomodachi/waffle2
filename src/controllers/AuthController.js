@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const uuidv4 = require('uuid').v4;
 const nodemailer = require('nodemailer');
 
+const VerificationToken = require('../models/VerificationToken');
+
 const AuthController = {
   signup: async (req, res) => {
     const email = req.body.email
@@ -16,11 +18,11 @@ const AuthController = {
     const salt = await bcrypt.genSalt(10);
     const password_hash = await bcrypt.hash(password, salt)
 
-    User.create(email, password_hash);
+    const userId = User.create(email, password_hash);
 
     // 認証トークン生成
     const verificationToken = uuidv4();
-    // TODO: DB に保存
+    VerificationToken.create(userId, verificationToken);
 
     // 認証用URL作成
     // TODO: baseURLを分離、環境ごとに変更できるようにする
