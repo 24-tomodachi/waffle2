@@ -1,0 +1,28 @@
+body {
+    background-color: #EFCA83; /* 背景色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.button-container {
+    display: flex;
+    gap: 100px; /* ボタン間のスペース */
+}
+
+.custom-button {
+    background-color: #A16452; /* ボタンの背景色 */
+    color: white; /* ボタンのテキスト色 */
+    border: none;
+    padding: 30px 60px;
+    border-radius: 20px; /* 角丸 */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #6E4520; /* ホバー時の背景色 */
+}
