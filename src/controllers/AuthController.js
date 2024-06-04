@@ -26,7 +26,7 @@ const AuthController = {
 
     // 認証用URL作成
     // TODO: baseURLを分離、環境ごとに変更できるようにする
-    const verificationUrl = `localhost:3000/auth/verify-email?token=${verificationToken}`;
+    const verificationUrl = `localhost:3000/auth/verify_email?token=${verificationToken}`;
 
     // メール送信
     const mailTransporter = nodemailer.createTransport({
@@ -48,24 +48,24 @@ const AuthController = {
     })
 
     // サインアップ成功ページにリダイレクトする
-    res.status(201).redirect('/auth/confirm-email');
+    res.status(201).redirect('/auth/confirm_email');
   },
 
   verifyEmail: async (req, res) => {
     const token = req.query.token;
     const verificationToken = await VerificationToken.findByToken(token);
     if(!verificationToken) {
-      return res.status(400).redirect('/auth/verify-email', { error: 'Invalid token' });
+      return res.status(400).redirect('/auth/verify_email', { error: 'Invalid token' });
     }
 
     // ユーザーを有効化する
     const user = await User.verify(verificationToken.user_id);
     if (!user) {
-      return res.status(500).redirect('/auth/verify-email', { error: 'User not found' });
+      return res.status(500).redirect('/auth/verify_email', { error: 'User not found' });
     }
 
     // メールアドレス確認完了ページにリダイレクトする
-    res.status(200).redirect('/auth/completed-email');
+    res.status(200).redirect('/auth/completed_email');
   },
 }
 
