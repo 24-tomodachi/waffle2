@@ -58,8 +58,25 @@ const UserModel = {
       throw new Error(`User search failed: ${error.message}`);
     }
     return data[0];
-  }
+  },
 
+  /**
+   * ユーザーを有効化する。
+   * @param {string} id ユーザーID
+   * @returns {Object} 更新したユーザー情報
+   */
+  verify: async (id) => {
+    const { data, error } = await supabase
+      .from('users')
+      .update({ is_active: true })
+      .eq('id', id)
+      .select('*');
+
+    if (error) {
+      throw new Error(`User activation failed: ${error.message}`);
+    }
+    return data[0];
+  },
 }
 
 module.exports = UserModel;

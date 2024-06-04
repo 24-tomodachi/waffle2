@@ -58,8 +58,14 @@ const AuthController = {
       return res.status(400).redirect('/auth/verify-email', { error: 'Invalid token' });
     }
 
-    // TODO: ユーザー有効化
-    // TODO: 認証成功画面にリダイレクト
+    // ユーザーを有効化する
+    const user = await User.verify(verificationToken.user_id);
+    if (!user) {
+      return res.status(500).redirect('/auth/verify-email', { error: 'User not found' });
+    }
+
+    // メールアドレス確認完了ページにリダイレクトする
+    res.status(200).redirect('/auth/completed-email');
   },
 }
 
