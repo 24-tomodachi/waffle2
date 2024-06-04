@@ -70,11 +70,6 @@ SUPABASE_KEY=<anon key>
 SUPABASE_DB_PASSWORD=
 ```
 
-- リモートからデータベース構造を読み込む
-```
-npx supabase db pull
-```
-
 - DB を初期化する
 ```
 npx supabase db reset
