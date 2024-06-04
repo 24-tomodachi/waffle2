@@ -27,6 +27,12 @@ http://localhost:3000
 - 前提環境
   - Docker Desktop をインストールする（[参考](https://zenn.dev/seiya0/articles/tech-docker-desktop-for-win-install)）
   - [supabase](https://supabase.com/) にアカウントを作成する
+ 
+- ブランチを `main` に戻し、pullしておく
+```
+git switch main
+git pull
+```
 
 - CLIからログインする
 ```sh
