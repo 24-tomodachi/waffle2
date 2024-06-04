@@ -50,7 +50,7 @@ npx supabase start
 - `API URL`
 - `anon key`
 
-6.  環境変数ファイルを作成する
+6.  環境変数ファイルを作成する<br>
 `.env.test.local` を作成し、以下のように記入（<>はさっきメモした値）
 ```
 # supabase
