@@ -9,6 +9,7 @@ const VerificationToken = {
    * @throws {Error} DB操作に失敗した場合
    */
   create: async (userId, token) => {
+    console.log(userId, token);
     const { data, error } = await supabase
       .from('verification_tokens')
       .insert([

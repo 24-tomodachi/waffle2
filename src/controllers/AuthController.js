@@ -12,7 +12,7 @@ const AuthController = {
 
     // emailが存在してたら処理を中断
     if (await User.findByEmail(email)) {
-      return res.redirect("/auth/signup");
+      return res.redirect("/auth/signup", { error: 'Email already exists' });
     }
 
     const salt = await bcrypt.genSalt(10);
