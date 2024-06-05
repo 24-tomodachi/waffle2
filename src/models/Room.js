@@ -1,13 +1,19 @@
-export class Room {
+const supabase = require('../libs/supabase');
 
-  /**
-   * 新しくルームを作成する。
-   * @param {String} name
-   * @param {String} description
-   */
-  static create = (name, description) => {
-    // ↓↓↓ ここに処理を書く
+const RoomModel = {
+  create: async (name, userId, description="") => {
+    const { data, error } = await supabase
+    .from('rooms')
+    .insert([
+        { name, user_id:userId, description }
+    ])
+    .select('*');
 
-    // ↑↑↑ ここに処理を書く
+    if (error) {
+        throw new Error(`Room creation failed: ${error.message}`);
+      }
+      return data[0];
+    }
   }
-}
+
+module.exports = RoomModel;
