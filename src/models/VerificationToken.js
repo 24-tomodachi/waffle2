@@ -1,7 +1,7 @@
 const supabase = require('../libs/supabase');
 const { create } = require('./User');
 
-const VerificationToken = {
+const VerificationTokenModel = {
   /**
    * @param {string} userId ユーザーID
    * @param {string} token 認証トークン
@@ -43,4 +43,4 @@ const VerificationToken = {
   },
 }
 
-module.exports = VerificationToken;
+module.exports = VerificationTokenModel;
