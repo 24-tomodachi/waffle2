@@ -55,16 +55,15 @@ const AuthController = {
 
   verifyEmail: async (req, res) => {
     const token = req.query.token;
+    // TODO: UUID のフォーマットに沿っているか、正規表現で確認する
+
     const verificationToken = await VerificationToken.findByToken(token);
     if(!verificationToken) {
-      return res.status(400).redirect('/auth/verify_email', { error: 'Invalid token' });
+      return res.status(400).render('auth/error_email');
     }
 
     // ユーザーを有効化する
     const user = await User.verify(verificationToken.user_id);
-    if (!user) {
-      return res.status(500).redirect('/auth/verify_email', { error: 'User not found' });
-    }
 
     // メールアドレス確認完了ページにリダイレクトする
     res.status(200).redirect('/auth/completed_email');
