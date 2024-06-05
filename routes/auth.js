@@ -19,7 +19,7 @@ router.get("/confirm_email", (req, res) => {
 
 router.get("/verify_email", AuthController.verifyEmail);
 
-router.get("/completed-email", (req, res) => {
+router.get("/completed_email", (req, res) => {
   res.render("auth/completed_email");
 })
 
