@@ -18,7 +18,7 @@ const AuthController = {
     const salt = await bcrypt.genSalt(10);
     const password_hash = await bcrypt.hash(password, salt)
 
-    const userId = await User.create(email, password_hash);
+    const userId = await User.create(email, password_hash, salt);
 
     // 認証トークン生成
     const verificationToken = uuidv4();

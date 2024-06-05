@@ -5,14 +5,15 @@ const UserModel = {
   /**
    * @param {string} email メールアドレス
    * @param {string} password_hash パスワード
+   * @param {string} salt ソルト
    * @returns {string} 作成したユーザーのID
    * @throws {Error} DB操作に失敗した場合
    */
-  create: async (email, password_hash) => {
+  create: async (email, password_hash, salt) => {
     const { data, error } = await supabase
       .from('users')
       .insert([
-        { email, password_hash }
+        { email, password_hash, salt }
       ])
       .select('id');
 
