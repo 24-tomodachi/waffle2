@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GameBoy like Canvas</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/stylesheets/canvas.css">
 </head>
 <body>
   <main>
@@ -56,29 +56,29 @@
     };
 
     // キャラクターの画像のパス
-    character.image.src = './image/icon.png'; // 画像のパスを指定
+    character.image.src = '/image/icon.png'; // 画像のパスを指定
 
     // 机と椅子の画像の読み込み
     const deskImage = new Image();
-    deskImage.src = './image/tukue.jpg';
+    deskImage.src = '/image/tukue.jpg';
 
     const chairImage = new Image();
-    chairImage.src = './image/椅子　下向き.png';
+    chairImage.src = '/image/椅子　下向き.png';
 
     const chairueImage = new Image();
-    chairueImage.src = './image/isu uemuki.png';
+    chairueImage.src = '/image/isu uemuki.png';
 
     const hunsuiImage = new Image();
-    hunsuiImage.src = './image/hunsui3.png';
+    hunsuiImage.src = '/image/hunsui3.png';
 
     const kiImage = new Image();
-    kiImage.src = './image/ki2.png';
+    kiImage.src = '/image/ki2.png';
 
     // 障害物の定義
     let obstacles = [];
 
     // JSONファイルのパス
-    const obstaclesDataPath = 'obstacles.json';
+    const obstaclesDataPath = '/config/obstacles.json';
 
     // JSONファイルから障害物を読み込む関数
     async function loadObstacles() {
