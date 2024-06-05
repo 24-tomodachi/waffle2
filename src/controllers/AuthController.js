@@ -25,8 +25,10 @@ const AuthController = {
     VerificationToken.create(userId, verificationToken);
 
     // 認証用URL作成
-    // TODO: baseURLを分離、環境ごとに変更できるようにする
-    const verificationUrl = `localhost:3000/auth/verify_email?token=${verificationToken}`;
+    const protocol = req.protocol;
+    const host = req.get('host');
+    const baseUrl = `${protocol}://${host}`;
+    const verificationUrl = `${baseUrl}/auth/verify_email?token=${verificationToken}`;
 
     // メール送信
     const mailTransporter = nodemailer.createTransport({
