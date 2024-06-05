@@ -24,33 +24,45 @@ http://localhost:3000
 
 ## 任意
 ### テスト環境を構築する
-1. （前提）Docker Desktop をインストールする（[参考](https://zenn.dev/seiya0/articles/tech-docker-desktop-for-win-install)）
+- 前提環境
+  - Docker Desktop をインストールする（[参考](https://zenn.dev/seiya0/articles/tech-docker-desktop-for-win-install)）
+  - [supabase](https://supabase.com/) にアカウントを作成する
+ 
+- ブランチを `main` に戻し、pullしておく
+```
+git switch main
+git pull
+```
 
-2. [supabase](https://supabase.com/) にアカウントを作成する
+- ライブラリをインストールしておく
+```
+npm clean-install
+```
 
-3. CLIからログインする
+- CLIからログインする
 ```sh
 npx supabase login
 ```
 - `Press Enter to open browser and login automatically` と表示されるので、Enter
-- ブラウザが起動するので、さっき作成したアカウントでログイン
-- `You are now logged in. Happy coding!` と表示されたら OK
+  - ブラウザが起動するので、さっき作成したアカウントでログイン
+  - `You are now logged in. Happy coding!` と表示されたら OK
 
-4. CLI とプロジェクトを紐づける
+- CLI とプロジェクトを紐づける<br>
+  - プロジェクトにsupabaseアカウントを追加する必要があるので、 よつまで連絡してください
 ```
 npx supabase link --project-ref btomwxhenxidjudolnzs
 ```
 
-5. ローカルにデータベースを構築する
+- ローカルにデータベースを構築する
 ```
 npx supabase start
 ```
-成功するとログが表示されるので、以下の値をメモ
-- `API URL`
-- `anon key`
+  - 成功するとログが表示されるので、以下の値をメモ
+    - `API URL`
+    - `anon key`
 
-6.  環境変数ファイルを作成する
-`.env.test.local` を作成し、以下のように記入（<>はさっきメモした値）
+- 環境変数ファイルを作成する<br>
+  - `.env.test.local` を作成し、以下のように記入（<>はさっきメモした値）
 ```
 # supabase
 SUPABASE_URL=<API URL>
@@ -58,9 +70,13 @@ SUPABASE_KEY=<anon key>
 SUPABASE_DB_PASSWORD=
 ```
 
-7. テストを実行してみる
+- DB を初期化する
+```
+npx supabase db reset
+```
+
+- テストを実行してみる
 ```
 npm run test
 ```
-
-テストが実行され、すべて通っている（passed）なら OK
+  - テストが実行され、すべて通っている（passed）なら OK
