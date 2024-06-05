@@ -3,7 +3,7 @@ const RoomModel = require('../../src/models/Room');
 
 describe('RoomModel', () => {
   const name = "testRoom";
-  const userId = "testUser";
+  const userId = 1;
 
   describe("Room#create", () => {
     // 正常系
@@ -18,7 +18,7 @@ describe('RoomModel', () => {
       // assert
       expect(room).not.toBeNull();
       expect(room.name).toBe(name);
-      expect(room.created_by).toBe(userId);
+      expect(room.user_id).toBe(userId);
 
       // delete after
       await supabase.from('rooms').delete().match({name: name});

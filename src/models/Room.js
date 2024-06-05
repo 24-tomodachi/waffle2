@@ -13,7 +13,7 @@ const RoomModel = {
     const { data, error } = await supabase
     .from('rooms')
     .insert([
-        { name, userId ,description }
+        { name, user_id:userId, description }
     ])
     .select('*');
 
