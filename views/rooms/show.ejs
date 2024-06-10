@@ -282,6 +282,15 @@
     }
 
     startGame(); // ゲームの開始
+
+    // ログアウトボタンのクリックイベントリスナーを追加
+    document.getElementById('logout').addEventListener('click', () => {
+        if (confirm('ログアウトしますか？')) {
+            alert('ログアウトしました');
+            // ログアウト処理をここに追加する
+            //ホーム画面に飛ぶ
+        }
+    });
   </script>
 </body>
 </html>
