@@ -10,7 +10,7 @@ describe('RoomModel', () => {
     it("正常なルーム名と作成者のidが渡された場合、問題なく登録できる", async () => {
       
       // delete before
-      await supabase.from('rooms').delete().match({name: name});
+      await supabase.from('rooms').delete().match({ name: name });
       
       // act
       const room = await RoomModel.create(name, userId);
@@ -21,7 +21,30 @@ describe('RoomModel', () => {
       expect(room.user_id).toBe(userId);
 
       // delete after
-      await supabase.from('rooms').delete().match({name: name});
+      await supabase.from('rooms').delete().match({ name: name });
     })
   })
+
+  describe("Room#findById", () => {
+    // 正常系
+    it("idが存在する場合、問題なく取得できるか", async () => {
+      // テストデータは seed.js で登録済みとする
+      const id = 1;
+      const userId = 1;
+      const name = "Room 1";
+      const description = "Room 1 description";
+
+      // arrange
+      const room = await RoomModel.create(name, userId);
+
+      // act
+      const result = await RoomModel.findById(room.id);
+
+      // assert
+      expect(result).not.toBeNull();
+      expect(result.id).toBe(id);
+      expect(result.name).toBe(name);
+      expect(result.description).toBe(description);
+    })
+  });
 });
