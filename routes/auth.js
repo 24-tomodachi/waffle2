@@ -8,7 +8,7 @@ router.get("/signin", (req, res) => {
 })
 
 router.get("/signup", (req, res) => {
-  res.render("auth/signup");
+  res.render("auth/signup", { errorMessage: null, email: '' });
 })
 
 router.post("/signup", async (req, res) => {
@@ -17,7 +17,10 @@ router.post("/signup", async (req, res) => {
 
   // emailが存在してたら処理を中断
   if(await User.findByEmail(email)) {
-    return res.redirect("/auth/signup");
+    return res.redirect("/auth/signup", {
+      errorMessage: 'このメールアドレスはすでに登録されています',
+      email: email
+    });
   }
 
   const salt = await bcrypt.genSalt(10);
