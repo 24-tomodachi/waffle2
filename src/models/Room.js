@@ -4,9 +4,15 @@ export class Room {
    * @param {string} id ルームid
    * @returns {Object} ルーム
    */
-  static findById(id) {
-    // ↓↓↓ ここに処理を書く
+  static  async findById(id) {
+    const { data, error } = await supabase
+      .from('rooms')
+      .select('*')
+      .eq('id', id);
 
-    // ↑↑↑ ここに処理を書く
+    if (error) {
+      throw new Error(`Room search failed: ${error.message}`);
+    }
+    return data[0];
   }
 }
