@@ -18,9 +18,12 @@
     <div class="container">
         <h1 class="poetsen-one-regular">Waffle</h1>
         <div class="login-box">
+            <% if (errorMessage) { %>
+                <div class="error-message"><%= errorMessage %></div>
+            <% } %>
             <form action="/auth/signup" method="POST">
                 <label for="email">メールアドレス</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" required value="<%= email %>">
                 <label for="password">パスワード</label>
                 <input type="password" id="password" name="password" required>
                 <button type="submit">新規登録</button>
