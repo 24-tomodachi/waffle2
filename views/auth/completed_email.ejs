@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サインアップ | Waffle</title>
-    <link rel="stylesheet" href="/stylesheets/signup.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>認証メール完了 | Waffle</title>
+        <link rel="stylesheet" href="/stylesheets/completed_email.css">
         <!--英語用-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,19 +13,17 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
-</head>
+    </head>
 <body class="kosugi-maru-regular">
     <div class="container">
         <h1 class="poetsen-one-regular">Waffle</h1>
-        <div class="login-box">
-            <form action="/auth/signup" method="POST">
-                <label for="email">メールアドレス</label>
-                <input type="email" id="email" name="email" required>
-                <label for="password">パスワード</label>
-                <input type="password" id="password" name="password" required>
-                <button type="submit">新規登録</button>
+            <form action="/rooms/index">
+                <p>
+                    認証しました！<br>
+                    ログイン完了
+                </p>
+                <button type="submit">ルーム選択へ</button>
             </form>
-        </div>
     </div>
 </body>
 </html>
