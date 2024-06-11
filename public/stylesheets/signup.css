@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/image/waffle1.png');
+    background-size: cover;
+}
+
+.container {
+    text-align: center;
+    margin-top: 8px;
+}
+
+h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.login-box {
+    background-color: #A16452;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px 0;
+    color: #fff;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+}
+
+button {
+    padding: 10px;
+    background-color: #ffeca1;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    color: #A16452;
+}
+
+button:hover {
+    background-color: #d2c385;
+}
+
+/*フォント英語専用*/
+.poetsen-one-regular {
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+  }
+/*フォント日本語専用*/
+.kosugi-maru-regular {
+    font-family: "Kosugi Maru", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
