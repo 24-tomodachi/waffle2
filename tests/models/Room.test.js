@@ -34,11 +34,8 @@ describe('RoomModel', () => {
       const name = "Room 1";
       const description = "Room 1 description";
 
-      // arrange
-      const room = await RoomModel.create(name, userId);
-
       // act
-      const result = await RoomModel.findById(room.id);
+      const result = await RoomModel.findById(id);
 
       // assert
       expect(result).not.toBeNull();
