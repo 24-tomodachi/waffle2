@@ -1,17 +1,19 @@
 const supabase = require('../libs/supabase');
 
 const UserModel = {
+  // TODO: return するデータをid => すべてに変更
   /**
    * @param {string} email メールアドレス
    * @param {string} password_hash パスワード
+   * @param {string} salt ソルト
    * @returns {string} 作成したユーザーのID
    * @throws {Error} DB操作に失敗した場合
    */
-  create: async (email, password_hash) => {
+  create: async (email, password_hash, salt) => {
     const { data, error } = await supabase
       .from('users')
       .insert([
-        { email, password_hash }
+        { email, password_hash, salt }
       ])
       .select('id');
 
@@ -57,8 +59,25 @@ const UserModel = {
       throw new Error(`User search failed: ${error.message}`);
     }
     return data[0];
-  }
+  },
 
+  /**
+   * ユーザーを有効化する。
+   * @param {string} id ユーザーID
+   * @returns {Object} 更新したユーザー情報
+   */
+  verify: async (id) => {
+    const { data, error } = await supabase
+      .from('users')
+      .update({ is_verified: true })
+      .eq('id', id)
+      .select('*');
+
+    if (error) {
+      throw new Error(`User activation failed: ${error.message}`);
+    }
+    return data[0];
+  },
 }
 
 module.exports = UserModel;
