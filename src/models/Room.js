@@ -17,20 +17,20 @@ const RoomModel = {
     /**
      * ルーム情報を更新する。
      * @param {string} id ルームID
-     * @param {Object} data 更新するルーム情報
+     * @param {Object} updateData 更新するルーム情報
      * @returns {Object} 更新されたデータ
      */
-    update: async (id, data) => {
+    update: async (id, updateData) => {
     const { data, error } = await supabase
     .from('rooms')
-    .update(data)
+    .update(updateData)
     .eq('id', id)
     .select();
 
     if (error) {
         throw new Error(`Room creation failed: ${error.message}`);
     }
-    return data[0];
+    return updateData[0];
     }
   }
 
