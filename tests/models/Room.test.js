@@ -24,4 +24,23 @@ describe('RoomModel', () => {
       await supabase.from('rooms').delete().match({name: name});
     })
   })
+
+  describe('Room#update', () => {
+    // 正常系
+    it('正常な更新情報が与えられた場合、問題なく更新できるか', async () => {
+      const { data: room } = await supabase
+        .from('rooms')
+        .insert({ name: name, user_id: userId })
+        .select()
+        .single();
+
+      const updateData = {name: "updatedName", description: "updatedDescription"};
+
+      const updatedRoom = await RoomModel.update(room.id, updateData);
+      expect(updatedRoom).not.toBeNull();
+      expect(updatedRoom.name).toBe(updateData.name);
+    })
+
+    // TODO: 異常系
+  })
 });
