@@ -8,13 +8,13 @@ describe('RoomModel', () => {
   describe("Room#create", () => {
     // 正常系
     it("正常なルーム名と作成者のidが渡された場合、問題なく登録できる", async () => {
-      
+
       // delete before
       await supabase.from('rooms').delete().match({ name: name });
-      
+
       // act
       const room = await RoomModel.create(name, userId);
-      
+
       // assert
       expect(room).not.toBeNull();
       expect(room.name).toBe(name);
@@ -43,5 +43,24 @@ describe('RoomModel', () => {
       expect(result.name).toBe(name);
       expect(result.description).toBe(description);
     })
-  });
+  })
+
+  describe('Room#update', () => {
+    // 正常系
+    it('正常な更新情報が与えられた場合、問題なく更新できるか', async () => {
+      const { data: room } = await supabase
+        .from('rooms')
+        .insert({ name: name, user_id: userId })
+        .select()
+        .single();
+
+      const updateData = {name: "updatedName", description: "updatedDescription"};
+
+      const updatedRoom = await RoomModel.update(room.id, updateData);
+      expect(updatedRoom).not.toBeNull();
+      expect(updatedRoom.name).toBe(updateData.name);
+    })
+
+    // TODO: 異常系
+  })
 });

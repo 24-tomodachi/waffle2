@@ -4,6 +4,7 @@ const User = require('../../src/models/User');
 describe('User', () => {
   const email = 'hoge@example.com';
   const password_hash = 'password_hash';
+  const salt = 'salt';
 
   describe('User#create', () => {
     // 正常系
@@ -15,7 +16,7 @@ describe('User', () => {
         .delete()
         .eq('email', email);
 
-      const id = await User.create(email, password_hash);
+      const id = await User.create(email, password_hash, salt);
       expect(id).not.toBeNull();
 
       // 登録したデータを削除

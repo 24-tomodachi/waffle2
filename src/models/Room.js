@@ -22,6 +22,26 @@ const RoomModel = {
       }
       return data[0];
     },
+    /**
+     * ルーム情報を更新する。
+     * @param {number} id ルームID
+     * @param {Object} updateData 更新するルーム情報
+     * @returns {Object} 更新されたデータ
+     */
+    update: async (id, updateData) => {
+    const { data, error } = await supabase
+    .from('rooms')
+    .update(updateData)
+    .eq('id', id)
+    .select();
+
+    if (error) {
+        throw new Error(`Room creation failed: ${error.message}`);
+    }
+    return data[0];
+    }
+  }
+    },
 
   /**
    * ルームidをもとに、ルームを検索する。
@@ -43,3 +63,4 @@ const RoomModel = {
 }
 
 module.exports = RoomModel;
+
