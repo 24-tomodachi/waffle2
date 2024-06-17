@@ -73,4 +73,28 @@ describe('User', () => {
 
       // TODO: 異常系
     })
+
+    describe('User#update', () => {
+      // 正常系
+      it('正常な更新情報が与えられた場合、問題なく更新できるか', async () => {
+        const { data: user } = await supabase
+          .from('users')
+          .insert({ email: email, password_hash: password_hash ,salt: salt})
+          .select()
+          .single();
+        const updateData = {name: "Name", email: "updated@example.com",password_hash: "updatedPasswordHash",salt:"updatedSalt"};
+  
+        const updatedUser = await RoomModel.update(user.id, updateData);
+        expect(updatedUser).not.toBeNull();
+        expect(updatedUser.name).toBe(updateData.name);
+      })
+  
+      // TODO: 異常系
+    })
+
+
+
+
+
+
   });
