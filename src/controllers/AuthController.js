@@ -65,9 +65,8 @@ const AuthController = {
 
     // セッションを発行
     req.session.userId = user.id;
-    console.log(req.session);
 
-    res.status(200).redirect('/rooms/index');
+    res.status(200).redirect('/rooms/');
   },
 
   verifyEmail: async (req, res) => {
