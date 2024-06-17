@@ -56,6 +56,16 @@ const AuthController = {
   signin: async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
+
+    // 認可処理
+    const user = await User.findByEmail(email);
+    if (!user && !await bcrypt.compare(password, user.password_hash)) {
+      return res.status(400).render('auth/signin', { error: 'メールアドレスが存在しないか、パスワードが間違っています。' });
+    }
+
+    // セッションを発行
+
+    res.status(200).redirect('/user/room-choice');
   },
 
   verifyEmail: async (req, res) => {
