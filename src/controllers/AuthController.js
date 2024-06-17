@@ -49,6 +49,9 @@ const AuthController = {
       `
     })
 
+    // ログイン状態にする
+    req.session.userId = user.id;
+
     // サインアップ成功ページにリダイレクトする
     res.status(201).redirect('/auth/confirm_email');
   },
