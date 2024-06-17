@@ -64,6 +64,7 @@ const AuthController = {
     }
 
     // セッションを発行
+    req.session.userId = user.id;
 
     res.status(200).redirect('/user/room-choice');
   },
