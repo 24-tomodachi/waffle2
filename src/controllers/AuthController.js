@@ -53,6 +53,11 @@ const AuthController = {
     res.status(201).redirect('/auth/confirm_email');
   },
 
+  signin: async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+  },
+
   verifyEmail: async (req, res) => {
     const token = req.query.token;
     // TODO: UUID のフォーマットに沿っているか、正規表現で確認する
