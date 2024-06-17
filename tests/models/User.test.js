@@ -84,7 +84,7 @@ describe('User', () => {
           .single();
         const updateData = {name: "Name", email: "updated@example.com",password_hash: "updatedPasswordHash",salt:"updatedSalt"};
   
-        const updatedUser = await RoomModel.update(user.id, updateData);
+        const updatedUser = await User.update(user.id, updateData);
         expect(updatedUser).not.toBeNull();
         expect(updatedUser.name).toBe(updateData.name);
       })
