@@ -15,6 +15,21 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// for session
+app.use(
+  session({
+    secret: "secrettt",
+    name: "session",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      path: "/",
+      httpOnly: "true",
+      maxAge: 60 * 60 * 1000,  // 有効期限：1時間
+    },
+  })
+)
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
