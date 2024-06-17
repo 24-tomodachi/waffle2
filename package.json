@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "dotenvx run -f .env.development.local -- nodemon ./bin/www",
-    "test": "dotenvx run -f .env.test.local -- jest"
+    "test": "npm run db:reset && npm run test:run",
+    "test:run": "dotenvx run -f .env.test.local -- jest",
+    "db:reset": "npx supabase db reset"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^0.44.1",
