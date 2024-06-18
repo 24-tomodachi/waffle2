@@ -33,7 +33,6 @@ router.post("/signup", async (req, res) => {
   res.redirect('/');
 });
 
-
 router.get("/confirm_email", (req, res) => {
   res.render("auth/confirm_email");
 })
