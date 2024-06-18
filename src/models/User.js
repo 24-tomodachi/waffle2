@@ -80,12 +80,12 @@ const UserModel = {
   },
 
   /**
-     * ルーム情報を更新する。
+     * Idをもとにユーザ情報を更新する。
      * @param {number} id ユーザID
      * @param {Object} updateData 更新するユーザ情報
      * @returns {Object} 更新されたデータ
      */
-    update: async (id, updateData) => {
+    updateById: async (id, updateData) => {
       const { data,error} = await supabase
       .from('users')
       .update(updateData)

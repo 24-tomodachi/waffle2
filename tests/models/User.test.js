@@ -83,18 +83,17 @@ describe('User', () => {
           .select()
           .single();
         const updateData = {name: "Name", email: "updated@example.com",password_hash: "updatedPasswordHash",salt:"updatedSalt"};
-  
-        const updatedUser = await User.update(user.id, updateData);
+
+        const updatedUser = await User.updateById(user.id, updateData);
         expect(updatedUser).not.toBeNull();
         expect(updatedUser.name).toBe(updateData.name);
+
+        const { data: deleteData, deleteError } = await supabase
+          .from('users')
+          .delete()
+          .eq('id', user.id);
       })
-  
+
       // TODO: 異常系
     })
-
-
-
-
-
-
   });
