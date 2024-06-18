@@ -10,6 +10,18 @@ INSERT INTO users (email, password_hash, salt, name, twitter_id) VALUES
     ('user9@example.com', 'password9', 'salt9', 'User 9', 'twitter9'),
     ('user10@example.com', 'password10', 'salt10', 'User 10', 'twitter10');
 
+INSERT INTO rooms (name, user_id, description) VALUES
+    ('Room 1', 1, 'Room 1 description'),
+    ('Room 2', 2, 'Room 2 description'),
+    ('Room 3', 3, 'Room 3 description'),
+    ('Room 4', 4, 'Room 4 description'),
+    ('Room 5', 5, 'Room 5 description'),
+    ('Room 6', 6, 'Room 6 description'),
+    ('Room 7', 7, 'Room 7 description'),
+    ('Room 8', 8, 'Room 8 description'),
+    ('Room 9', 9, 'Room 9 description'),
+    ('Room 10', 10, 'Room 10 description');
+
 INSERT INTO verification_tokens (user_id, token) VALUES
     (1, '00000000-0000-0000-0000-000000000001'),
     (2, '00000000-0000-0000-0000-000000000002'),

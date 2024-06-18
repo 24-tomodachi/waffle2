@@ -12,7 +12,6 @@ router.get("/signup", (req, res) => {
 
 router.post("/signup", AuthController.signup);
 
-
 router.get("/confirm_email", (req, res) => {
   res.render("auth/confirm_email");
 })
