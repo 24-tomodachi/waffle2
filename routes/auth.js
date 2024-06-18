@@ -6,6 +6,8 @@ router.get("/signin", (req, res) => {
   res.render("auth/signin");
 })
 
+router.post("/signin", AuthController.signin);
+
 router.get("/signup", (req, res) => {
   res.render("auth/signup");
 })
