@@ -6,12 +6,13 @@ router.get("/signin", (req, res) => {
   res.render("auth/signin");
 })
 
+router.post("/signin", AuthController.signin);
+
 router.get("/signup", (req, res) => {
-  res.render("auth/signup");
+  res.render("auth/signup", { errorMessage: null, email: '' });
 })
 
 router.post("/signup", AuthController.signup);
-
 
 router.get("/confirm_email", (req, res) => {
   res.render("auth/confirm_email");
