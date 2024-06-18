@@ -34,7 +34,7 @@ INSERT INTO verification_tokens (user_id, token) VALUES
     (9, '00000000-0000-0000-0000-000000000009'),
     (10, '00000000-0000-0000-0000-000000000010');
 
-INSERT INTO room_keys (user_id, name_id) VALUES
+INSERT INTO room_keys (user_id, room_id) VALUES
     (1,1),
     (2,2),
     (3,3),
