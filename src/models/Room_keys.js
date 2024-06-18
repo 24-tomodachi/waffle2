@@ -1,9 +1,10 @@
 const supabase = require('../libs/supabase');
 
-const Roomkeys = {
+export const Roomkeys = {
     /**
      * @param {string} userId ユーザーid
      * @param {string} roomId ルームid
+     * @return {Object}　挿入したデータ
      * @throws {Error} DB操作に失敗した場合
      */
     create: async (userId,roomId) => {
