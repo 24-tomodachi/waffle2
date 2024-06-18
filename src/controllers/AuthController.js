@@ -49,8 +49,27 @@ const AuthController = {
       `
     })
 
+    // ログイン状態にする
+    req.session.userId = user.id;
+
     // サインアップ成功ページにリダイレクトする
     res.status(201).redirect('/auth/confirm_email');
+  },
+
+  signin: async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    // 認可処理
+    const user = await User.findByEmail(email);
+    if (!user || !await bcrypt.compare(password, user.password_hash)) {
+      return res.status(400).render('auth/signin', { error: 'メールアドレスが存在しないか、パスワードが間違っています。' });
+    }
+
+    // セッションを発行
+    req.session.userId = user.id;
+
+    res.status(200).redirect('/rooms/');
   },
 
   verifyEmail: async (req, res) => {
