@@ -1,5 +1,5 @@
 const { Request, Response } = require("express");
-const RoomModel = require("../models/Room.js");
+const RoomModel = require("../models/Room");
 
 const RoomController = {
   /**
@@ -16,6 +16,8 @@ const RoomController = {
 
     const room = await RoomModel.create(name, userId);
 
-    res.status(201).redirect("/rooms/" + room.id);
+    res.status(201).redirect("rooms/" + room.id);
   },
 };
+
+module.exports = RoomController

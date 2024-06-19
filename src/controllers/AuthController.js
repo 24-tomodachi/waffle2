@@ -69,7 +69,7 @@ const AuthController = {
     // セッションを発行
     req.session.userId = user.id;
 
-    res.status(200).redirect('/rooms/');
+    res.status(200).redirect('/rooms/select-mode');
   },
 
   verifyEmail: async (req, res) => {
@@ -77,7 +77,7 @@ const AuthController = {
     // TODO: UUID のフォーマットに沿っているか、正規表現で確認する
 
     const verificationToken = await VerificationToken.findByToken(token);
-    if(!verificationToken) {
+    if (!verificationToken) {
       return res.status(400).render('auth/error_email');
     }
 
