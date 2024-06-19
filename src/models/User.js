@@ -78,6 +78,25 @@ const UserModel = {
     }
     return data[0];
   },
-}
+
+  /**
+     * Idをもとにユーザ情報を更新する。
+     * @param {number} id ユーザID
+     * @param {Object} updateData 更新するユーザ情報
+     * @returns {Object} 更新されたデータ
+     */
+    updateById: async (id, updateData) => {
+      const { data,error} = await supabase
+      .from('users')
+      .update(updateData)
+      .eq('id', id)
+      .select();
+
+      if (error) {
+        throw new Error(`User creation failed: ${error.message}`);
+    }
+    return data[0];
+    }
+  }
 
 module.exports = UserModel;
