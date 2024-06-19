@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import RoomModel from "../models/Room.js";
+const { Request, Response } = require("express");
+const RoomModel = require("../models/Room.js");
 
 const RoomController = {
   /**
