@@ -4,6 +4,7 @@ const User = require('../../src/models/User');
 describe('User', () => {
   const email = 'hoge@example.com';
   const password_hash = 'password_hash';
+  const salt = 'salt';
 
   describe('User#create', () => {
     // 正常系
@@ -15,7 +16,7 @@ describe('User', () => {
         .delete()
         .eq('email', email);
 
-      const id = await User.create(email, password_hash);
+      const id = await User.create(email, password_hash, salt);
       expect(id).not.toBeNull();
 
       // 登録したデータを削除
@@ -64,6 +65,29 @@ describe('User', () => {
         expect(user).not.toBeNull();
 
         // 登録したデータを削除
+        const { data: deleteData, deleteError } = await supabase
+          .from('users')
+          .delete()
+          .eq('id', user.id);
+      })
+
+      // TODO: 異常系
+    })
+
+    describe('User#update', () => {
+      // 正常系
+      it('正常な更新情報が与えられた場合、問題なく更新できるか', async () => {
+        const { data: user } = await supabase
+          .from('users')
+          .insert({ email: email, password_hash: password_hash ,salt: salt})
+          .select()
+          .single();
+        const updateData = {name: "Name", email: "updated@example.com",password_hash: "updatedPasswordHash",salt:"updatedSalt"};
+
+        const updatedUser = await User.updateById(user.id, updateData);
+        expect(updatedUser).not.toBeNull();
+        expect(updatedUser.name).toBe(updateData.name);
+
         const { data: deleteData, deleteError } = await supabase
           .from('users')
           .delete()

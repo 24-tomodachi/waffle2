@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロフィール作成 | Waffle</title>
+    <link rel="stylesheet" href="/stylesheets/day1.css">
+    <!-- 日本語用 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+</head>
+<body class="kosugi-maru-regular">
+    <div class="header">
+        <h1>プロフィール情報</h1>
+    </div>
+    <div class="container">
+        <div class="profile-box">
+            <div class="profile-picture" onclick="document.getElementById('file-input').click();"></div>
+            <input type="file" id="file-input" style="display: none;" accept="image/*" onchange="loadProfilePicture(event)">
+            <input type="text" id="username" class="username" placeholder="自分のユーザー名" required>
+            <p id="error-message" class="error-message"></p>
+            <textarea class="comment" placeholder="一言コメント"></textarea>
+            <button class="save-button" onclick="validateAndSubmit()">保存する</button>
+        </div>
+    </div>
+    <script>
+        function loadProfilePicture(event) {
+            const profilePicture = document.querySelector('.profile-picture');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                profilePicture.style.backgroundImage = `url(${e.target.result})`;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function validateAndSubmit() {
+            const username = document.getElementById('username').value;
+            const errorMessage = document.getElementById('error-message');
+            if (username.trim() === "") {
+                errorMessage.textContent = "ユーザー名を入力してください。";
+            } else {
+                errorMessage.textContent = "";
+                window.location.href = "/rooms/index";
+            }
+        }
+    </script>
+</body>
+</html>
