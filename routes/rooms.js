@@ -3,9 +3,7 @@ const router = express.Router();
 const RoomController = require("../src/controllers/RoomController");
 const RoomModel = require('../src/models/Room');
 
-router.get("/", (req, res) => {
-  res.render("rooms/index");
-})
+router.get("/", RoomController.index);
 
 router.get("/new", (req, res) => {
   res.render("rooms/new");

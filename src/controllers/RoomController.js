@@ -18,6 +18,16 @@ const RoomController = {
 
     res.status(201).redirect("/rooms/" + room.id);
   },
+
+  /**
+   * すべてのルームを表示する。
+   * @param {Request} req
+   * @param {Response} res
+   */
+  index: async (req, res) => {
+    const rooms = await RoomModel.findAll();
+    res.render("rooms/index", { rooms });
+  },
 };
 
 module.exports = RoomController
