@@ -1,1 +1,17 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ルーム一覧</title>
+</head>
+<body>
+    <% for (const room of rooms) { %>
+        <a href="/rooms/<%= room.id %>"><%= room.name %></a>
+        <p><%= room.description %></p>
+
+        <hr>
+    <% } %>
+</body>
+</html>
