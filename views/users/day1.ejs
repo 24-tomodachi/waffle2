@@ -42,10 +42,15 @@
         function validateAndSubmit() {
             const username = document.getElementById('username').value;
             const errorMessage = document.getElementById('error-message');
+            const usernameInput = document.getElementById('username');
+
             if (username.trim() === "") {
                 errorMessage.textContent = "ユーザー名を入力してください。";
+                usernameInput.classList.add('error');
             } else {
                 errorMessage.textContent = "";
+                errorMessage.style.border = "";
+                usernameInput.classList.remove('error');
                 window.location.href = "/rooms/index";
             }
         }
