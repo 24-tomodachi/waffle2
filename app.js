@@ -8,12 +8,24 @@ var indexRouter = require('./routes/index');
 let authRouter = require('./routes/auth');
 let userRouter = require('./routes/users');
 let roomRouter = require('./routes/rooms');
+const cookieSession = require('cookie-session');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// for session
+// TODO: express-session に置換
+app.set("trust proxy", 1);
+app.use(cookieSession({
+  name: "session",
+  maxAge: 60 * 60 * 1000,
+  secret: "secrettt",
+  resave: false,
+  saveUninitialized: true,
+}))
 
 app.use(logger('dev'));
 app.use(express.json());
