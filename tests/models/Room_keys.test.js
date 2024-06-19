@@ -1,11 +1,11 @@
 const supabase = require('../../src/libs/supabase');
-const Roomkeys = require('../../src/models/Room_keys');
+const RoomKeysModel = require('../../src/models/RoomKeys');
 
-describe('Roomkeys', () => {
+describe('RoomKeys', () => {
     const roomId = 1;
     const userId = 1;
   
-    describe("Room_keys#create", () => {
+    describe("RoomKeys#create", () => {
       // 正常系
       it("ルームidとユーザーidが渡された場合、問題なく登録できる", async () => {
   
@@ -13,7 +13,7 @@ describe('Roomkeys', () => {
       await supabase.from('room_keys').delete().match({ user_id: userId });
 
         // act
-        const room_keys = await Roomkeys.create(roomId, userId);
+        const room_keys = await RoomKeysModel.create(roomId, userId);
   
         // assert
         expect(room_keys.room_id).toBe(roomId);

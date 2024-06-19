@@ -1,6 +1,6 @@
 const supabase = require('../libs/supabase');
 
-const Roomkeys = {
+const RoomKeysModel = {
     /**
      * @param {string} userId ユーザーid
      * @param {string} roomId ルームid
@@ -16,10 +16,10 @@ const Roomkeys = {
           .select('*');
     
         if (error) {
-          throw new Error(`Room_keys creation failed: ${error.message}`);
+          throw new Error(`RoomKeys creation failed: ${error.message}`);
         }
         return data[0];
       },
 }
 
-module.exports = Roomkeys;
+module.exports = RoomKeysModel;
