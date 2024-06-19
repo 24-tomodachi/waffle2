@@ -14,4 +14,6 @@ router.get("/:id", (req, res) => {
   res.render("rooms/show");
 })
 
+router.post("/create", RoomController.create);
+
 module.exports = router;
