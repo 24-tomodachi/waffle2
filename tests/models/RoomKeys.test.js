@@ -13,11 +13,11 @@ describe('RoomKeys', () => {
       await supabase.from('room_keys').delete().match({ user_id: userId });
 
         // act
-        const room_keys = await RoomKeysModel.create(roomId, userId);
+        const room_key = await RoomKeysModel.create(roomId, userId);
   
         // assert
-        expect(room_keys.room_id).toBe(roomId);
-        expect(room_keys.user_id).toBe(userId);
+        expect(room_key.room_id).toBe(roomId);
+        expect(room_key.user_id).toBe(userId);
   
         // delete after
         await supabase.from('room_keys').delete().match({ user_id: userId });
