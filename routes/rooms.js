@@ -10,6 +10,10 @@ router.get("/new", (req, res) => {
   res.render("rooms/new");
 })
 
+router.get("/select-mode", (req, res) => {
+  res.render("rooms/select-mode");
+})
+
 router.get("/:id", (req, res) => {
   // TODO: idを受け取って、部屋の詳細を表示する
   res.render("rooms/show");
