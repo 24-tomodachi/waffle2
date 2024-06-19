@@ -21,7 +21,15 @@ describe('RoomModel', () => {
       expect(room.user_id).toBe(userId);
 
       // delete after
-      await supabase.from('rooms').delete().match({ name: name });
+      await supabase.from('rooms').delete().eq("id", room.id);
+    })
+  })
+
+  describe("Room#findAll", () => {
+    it("正常に全てのルームを取得できるか", async () => {
+      const rooms = await RoomModel.findAll();
+      expect(rooms).not.toBeNull();
+      expect(rooms.length).toBe(10);
     })
   })
 
@@ -59,6 +67,9 @@ describe('RoomModel', () => {
       const updatedRoom = await RoomModel.update(room.id, updateData);
       expect(updatedRoom).not.toBeNull();
       expect(updatedRoom.name).toBe(updateData.name);
+
+      // delete after
+      await supabase.from('rooms').delete().eq("id", room.id);
     })
 
     // TODO: 異常系
