@@ -8,13 +8,13 @@ const RoomController = {
    * @param {Response} res
    */
   create: async (req, res) => {
-    const { name } = req.body;
+    const { name, description } = req.body;
     const userId = req.session.userId;
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
-    const room = await RoomModel.create(name, userId);
+    const room = await RoomModel.create(name, userId, description);
 
     res.status(201).redirect("rooms/" + room.id);
   },
