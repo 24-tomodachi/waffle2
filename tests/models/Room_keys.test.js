@@ -2,8 +2,8 @@ const supabase = require('../../src/libs/supabase');
 const Roomkeys = require('../../src/models/Room_keys');
 
 describe('Roomkeys', () => {
-    const roomId = 11;
-    const userId = 11;
+    const roomId = 1;
+    const userId = 1;
   
     describe("Room_keys#create", () => {
       // 正常系

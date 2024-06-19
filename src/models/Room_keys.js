@@ -1,6 +1,6 @@
 const supabase = require('../libs/supabase');
 
-export const Roomkeys = {
+const Roomkeys = {
     /**
      * @param {string} userId ユーザーid
      * @param {string} roomId ルームid
@@ -21,3 +21,5 @@ export const Roomkeys = {
         return data[0];
       },
 }
+
+module.exports = Roomkeys;
