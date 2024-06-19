@@ -16,7 +16,7 @@ const RoomController = {
 
     const room = await RoomModel.create(name, userId, description);
 
-    res.status(201).redirect("rooms/" + room.id);
+    res.status(201).redirect("/rooms/" + room.id);
   },
 };
 
