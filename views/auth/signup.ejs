@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,28 +14,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
-
 <body class="kosugi-maru-regular">
     <div class="container">
         <h1 class="poetsen-one-regular">Waffle</h1>
         <div class="login-box">
-            <% if (errorMessage) { %>
-                <div class="error-message"><%= errorMessage %></div>
-            <% } %>
-            <form action="/auth/signup" method="POST">
+            <form id="signup-form" action="/auth/signup" method="POST">
                 <label for="email">メールアドレス</label>
                 <input type="email" id="email" name="email" required>
-                <% if(typeof error !=='undefined' ) { %>
-                    <p class="error">
-                        <%= error %>
-                    </p>
-                    <% } %>
                 <label for="password">パスワード</label>
                 <input type="password" id="password" name="password" required>
+                <label for="confirm-password">パスワード確認</label>
+                <input type="password" id="confirm-password" name="confirm-password" required placeholder="もう一度パスワードを入力">
+                <div id="error-message" class="error-message"></div>
                 <button type="submit">新規登録</button>
             </form>
         </div>
+        <p class="register-link"><a href="/auth/signin">ログインの方はこちら</a></p>
     </div>
-</body>
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var errorMessage = document.getElementById('error-message');
+            var confirmPasswordInput = document.getElementById('confirm-password');
 
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                errorMessage.textContent = 'パスワードが一致しません';
+                confirmPasswordInput.classList.add('error');
+            } else {
+                errorMessage.textContent = '';
+                confirmPasswordInput.classList.remove('error');
+            }
+        });
+    </script>
+</body>
 </html>

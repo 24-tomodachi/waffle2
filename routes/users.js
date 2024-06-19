@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+router.get("/day1", (req, res) => {
+  res.render("users/day1");
+})
+
 router.get("/:id", (req, res) => {
   // TODO: idを受け取って、ユーザーの詳細を表示する
   res.render("users/show");

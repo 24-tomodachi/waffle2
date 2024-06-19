@@ -10,7 +10,7 @@ body {
 
 .container {
     text-align: center;
-    margin-top: 8px;
+    margin-top: 60px;
 }
 
 h1 {
@@ -36,10 +36,14 @@ label {
 
 input {
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: none;
     border-radius: 4px;
     font-size: 1.2em;
+}
+
+input.error {
+    background-color: #ffcccc;
 }
 
 button {
@@ -50,10 +54,24 @@ button {
     font-size: 1em;
     cursor: pointer;
     color: #A16452;
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: #d2c385;
+}
+
+.register-link {
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
 }
 
 /*フォント英語専用*/
@@ -62,15 +80,21 @@ button:hover {
     font-weight: 400;
     font-style: normal;
     color: #fff;
-  }
+}
+
 /*フォント日本語専用*/
 .kosugi-maru-regular {
     font-family: "Kosugi Maru", sans-serif;
     font-weight: 400;
     font-style: normal;
-  }
+}
 
-  .error-message {
+.error-message {
     color: red;
-    margin-bottom: 10px;
+    text-shadow: 
+        -1px -1px 0 #fff,  
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    margin-top: 5px;
 }
