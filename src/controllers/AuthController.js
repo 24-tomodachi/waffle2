@@ -12,7 +12,10 @@ const AuthController = {
 
     // emailが存在してたら処理を中断
     if (await User.findByEmail(email)) {
-      return res.status(400).render("auth/signup", { error: 'メールアドレスは既に存在します' });
+      return res.status(400).render("auth/signup", { 
+        errorMessage: 'メールアドレスは既に存在します',
+        email:email
+       });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -50,7 +53,7 @@ const AuthController = {
     })
 
     // ログイン状態にする
-    req.session.userId = user.id;
+    req.session.userId = userId;
 
     // サインアップ成功ページにリダイレクトする
     res.status(201).redirect('/auth/confirm_email');
@@ -63,7 +66,9 @@ const AuthController = {
     // 認可処理
     const user = await User.findByEmail(email);
     if (!user || !await bcrypt.compare(password, user.password_hash)) {
-      return res.status(400).render('auth/signin', { error: 'メールアドレスが存在しないか、パスワードが間違っています。' });
+      return res.status(400).render('auth/signin', { 
+        errorMessage: 'メールアドレスが存在しないか、パスワードが間違っています。' 
+      });
     }
 
     // セッションを発行
