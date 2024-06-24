@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ルーム作成</title>
+  <link rel="stylesheet" href="/stylesheets/new.css">
 </head>
 <body>
+  <div class="container">
   <form action="/rooms/create" method="post">
     <label for="name">ルーム名</label>
     <input type="text" id="name" name="name" required>
@@ -13,8 +15,11 @@
     <label for="description">ルーム説明</label>
     <textarea id="description" name="description"></textarea>
 
-    <a href="/rooms/select-mode">戻る</a>
-    <input type="submit" value="作成">
+    <div class="buttons">
+    <a href="/rooms/select-mode" class="button">戻る</a>
+    <input type="submit" value="作成" class="button">
+  </div>
   </form>
+</div>
 </body>
 </html>
