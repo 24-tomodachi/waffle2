@@ -9,7 +9,7 @@ const authRouter = require('./routes/auth');
 const userRouter = require('./routes/users');
 const roomRouter = require('./routes/rooms');
 
-const authCheck = require('./middleware/authCheck');
+const authCheck = require('./src/middleware/authCheck');
 
 var app = express();
 
@@ -25,8 +25,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use("/users", userRouter);
-app.use('/rooms', roomRouter);
 
 app.use('/users', authCheck, userRouter);
 app.use('/rooms', authCheck, roomRouter);

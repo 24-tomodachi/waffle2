@@ -1,10 +1,11 @@
 const { verify } = require("jsonwebtoken");
 
 const authCheck = (req, res, next) => {
+  console.log("test");
   const { token } = req.cookies;
   if (!token) {
     req.userId = null;
-    req.clearCookie("token");
+    res.clearCookie("token");
     return res.redirect("/auth/signin");
   }
 
