@@ -20,5 +20,6 @@ router.get("/:id", async (req, res) => {
 })
 
 router.post("/create", RoomController.create);
+router.post("/join", RoomController.join);  
 
 module.exports = router;
