@@ -43,6 +43,20 @@ const RoomModel = {
   },
 
   /**
+   * すべてのルームを取得する。
+   * @returns {Object[]} ルームの配列
+   */
+  findAll: async () => {
+    const { data, error } = await supabase
+      .from('rooms')
+      .select('*');
+    if (error) {
+      throw new Error(`Room search failed: ${error.message}`);
+    }
+    return data;
+  },
+
+  /**
    * ルームidをもとに、ルームを検索する。
    * @param {string} id ルームid
    * @returns {Object} ルーム
