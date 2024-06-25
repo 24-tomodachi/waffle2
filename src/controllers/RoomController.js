@@ -28,6 +28,17 @@ const RoomController = {
     const rooms = await RoomModel.findAll();
     res.render("rooms/index", { rooms });
   },
+
+  join: async(req, res) => {
+    const { roomId } = req.body;
+    const userId = req.session.userId;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    // RoomKeysControllerのcreateメソッドを呼び出し
+    await RoomKeysController.create(req, res);
+  },
 }
 
 module.exports = RoomController
