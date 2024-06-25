@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const uuidv4 = require('uuid').v4;
 const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 const VerificationToken = require('../models/VerificationToken');
 
@@ -12,7 +13,7 @@ const AuthController = {
 
     // emailが存在してたら処理を中断
     if (await User.findByEmail(email)) {
-      return res.status(400).render("auth/signup", { 
+      return res.status(400).render("auth/signup", {
         errorMessage: 'メールアドレスは既に存在します',
         email:email
        });
@@ -53,7 +54,8 @@ const AuthController = {
     })
 
     // ログイン状態にする
-    req.session.userId = userId;
+    const token = jwt.sign({ userId: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.cookie('token', token);
 
     // サインアップ成功ページにリダイレクトする
     res.status(201).redirect('/auth/confirm_email');
@@ -66,13 +68,14 @@ const AuthController = {
     // 認可処理
     const user = await User.findByEmail(email);
     if (!user || !await bcrypt.compare(password, user.password_hash)) {
-      return res.status(400).render('auth/signin', { 
-        errorMessage: 'メールアドレスが存在しないか、パスワードが間違っています。' 
+      return res.status(400).render('auth/signin', {
+        errorMessage: 'メールアドレスが存在しないか、パスワードが間違っています。'
       });
     }
 
     // セッションを発行
-    req.session.userId = user.id;
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.cookie('token', token);
 
     res.status(200).redirect('/rooms/select-mode');
   },
