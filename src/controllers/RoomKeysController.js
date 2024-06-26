@@ -10,14 +10,12 @@ const RoomKeysController = {
      */
     create: async (req, res) => {
       const  { roomId } = req.body;
-      const userId = req.session.userId;
+      const userId = req.userId;
       if (!userId) {
         return res.status(401).json({ message: "Unauthorized" });
       }
   
-      const roomKeys = await RoomKeysModel.create(userId,roomId);
-      res.status(201).json({ roomKeys });
-
+      await RoomKeysModel.create(userId,roomId);
     },
 }
 

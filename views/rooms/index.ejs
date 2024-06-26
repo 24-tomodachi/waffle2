@@ -9,7 +9,7 @@
 <body>
     <%- include('../components/header') %>
     <% for (const room of rooms) { %>
-        <a href="/rooms/<%= room.id %>"><%= room.name %></a>
+        <a href="/rooms/join/<%= room.id %>"><%= room.name %></a>
         <p><%= room.description %></p>
 
         <hr>

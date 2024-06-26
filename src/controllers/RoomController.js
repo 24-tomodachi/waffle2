@@ -1,5 +1,6 @@
 const { Request, Response } = require("express");
 const RoomModel = require("../models/Room");
+const RoomKeysController = require("./RoomKeysController");
 
 const RoomController = {
   /**
@@ -29,15 +30,17 @@ const RoomController = {
     res.render("rooms/index", { rooms });
   },
 
-  join: async(req, res) => {
+  join: async (req, res) => {
     const { roomId } = req.body;
-    const userId = req.session.userId;
+    const userId = req.userId;
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
     // RoomKeysControllerのcreateメソッドを呼び出し
     await RoomKeysController.create(req, res);
+
+    res.redirect(`/rooms/${roomId}`);
   },
 }
 
