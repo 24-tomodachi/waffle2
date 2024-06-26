@@ -68,8 +68,8 @@ const AuthController = {
     // 認可処理
     const user = await User.findByEmail(email);
     if (!user || !await bcrypt.compare(password, user.password_hash)) {
-      return res.status(400).render('auth/signin', {
-        errorMessage: 'メールアドレスが存在しないか、パスワードが間違っています。'
+      return res.status(400).render('auth/signin', { 
+        errorMessage: 'メールアドレスが存在しないか、'+ "\n"+ 'パスワードが間違っています。' 
       });
     }
 
