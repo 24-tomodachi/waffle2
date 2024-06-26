@@ -9,7 +9,7 @@ const RoomKeysController = {
      * @param {Response} res
      */
     create: async (req, res) => {
-      const  { roomId } = req.body;
+      const roomId = req.params.id;
       const userId = req.userId;
       if (!userId) {
         return res.status(401).json({ message: "Unauthorized" });
