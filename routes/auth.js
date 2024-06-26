@@ -24,4 +24,6 @@ router.get("/completed_email", (req, res) => {
   res.render("auth/completed_email");
 })
 
+router.get("/signout", AuthController.signout)
+
 module.exports = router;
