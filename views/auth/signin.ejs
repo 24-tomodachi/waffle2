@@ -23,6 +23,9 @@
                 <input type="email" id="email" name="email" required>
                 <label for="password">パスワード</label>
                 <input type="password" id="password" name="password" required>
+                <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+                    <div class="error-message"><%= errorMessage %></div>
+                <% } %>
                 <button type="submit">ログイン</button>
             </form>
         </div>

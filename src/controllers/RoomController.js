@@ -9,7 +9,7 @@ const RoomController = {
    */
   create: async (req, res) => {
     const { name, description } = req.body;
-    const userId = req.session.userId;
+    const userId = req.userId;
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
     }
@@ -18,7 +18,7 @@ const RoomController = {
 
     res.status(201).redirect("/rooms/" + room.id);
   },
-  
+
   /**
    * すべてのルームを表示する。
    * @param {Request} req
