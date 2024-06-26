@@ -8,10 +8,18 @@ const authCheck = (req, res, next) => {
     return res.redirect("/auth/signin");
   }
 
-  const { userId } = verify(token, process.env.JWT_SECRET);
-  req.userId = userId;
-
-  next();
+  try {
+    const { userId } = verify(token, process.env.JWT_SECRET);
+    req.userId = userId;
+    next();
+  } catch (err) {
+    if (err.name === 'TokenExpiredError') {
+      req.userId = null;
+      res.clearCookie("token");
+      return res.redirect("/auth/signin");
+    }
+    next(err);
+  }
 };
 
 module.exports = authCheck;
