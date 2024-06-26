@@ -82,4 +82,14 @@ button:hover {
     font-weight: 400;
     font-style: normal;
   }
-  
+  .error-message {
+    color: red;
+    text-shadow: 
+        -1px -1px 0 #fff,  
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    margin-top: 5px;
+    overflow-wrap: normal; /* 折り返しを有効にするyooo */
+    white-space: pre-line; /* 改行を保持して折り返しを有効にするyooo */
+}
