@@ -40,7 +40,6 @@ const RoomKeysModel = {
     }
     return data[0];
   },
-
 }
 
 module.exports = RoomKeysModel;
