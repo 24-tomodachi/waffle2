@@ -21,6 +21,22 @@ const RoomController = {
   },
 
   /**
+   * ルームから退出する。
+   * @param {Request} req
+   * @param {Response} res
+   */
+  update: async (req, res) => {
+    const return_at = req.body;
+    const userId = req.userId;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    await RoomModel.update(userId,return_at);
+
+    res.status(201).redirect("/rooms/select-mode/");
+  },
+  /**
    * すべてのルームを表示する。
    * @param {Request} req
    * @param {Response} res
