@@ -35,10 +35,4 @@ const RoomKeysController = {
   }
 
 
-
-
-
-
-}
-
 module.exports = RoomKeysController
