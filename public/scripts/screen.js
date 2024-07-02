@@ -17,6 +17,7 @@ const init = async () => {
 }
 
 const loadObstacles = async () => {
+  const response = await fetch('/api/map');
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
