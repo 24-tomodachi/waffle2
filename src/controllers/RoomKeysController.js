@@ -32,11 +32,15 @@ const RoomKeysController = {
       }
   
        // ここでユーザーIDとルームIDを基にroom_keysテーブルのエントリを取得
-    const roomKey = await RoomKeysModel.findByUserIdAndRoomId(userId, roomId);
-    if (!roomKey) {
-      return res.status(404).json({ message: "Room key not found" });
+    const roomKeys = await RoomKeysModel.findByUserIdAndRoomId(userId, roomId);
+    console.log(roomKeys); // デバッグ用にログ出力
+    // 取得したエントリのうち、returned_atがnullのものを更新
+    for (const roomKey of roomKeys) {
+      if (roomKey.returned_at === null) {
+        await RoomKeysModel.update(roomKey.id, { returned_at });
+        break; // 最初のnullのエントリを更新したらループを抜ける
+      }
     }
-      await RoomKeysModel.update(roomKey.id, { returned_at });
       res.redirect('/rooms/select-mode');
     },
   }

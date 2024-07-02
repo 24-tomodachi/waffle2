@@ -58,7 +58,7 @@ const RoomKeysModel = {
     if (error) {
       throw new Error(`Room key search failed: ${error.message}`);
     }
-    return data[0];
+    return data;
   },
 
 }
