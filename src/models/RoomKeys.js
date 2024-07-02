@@ -40,6 +40,27 @@ const RoomKeysModel = {
     }
     return data[0];
   },
+
+  /**
+   * ユーザーIDとルームIDを基にroom_keysテーブルのエントリを検索する
+   * @param {string} userId ユーザーID
+   * @param {string} roomId ルームID
+   * @returns {Object} 検索されたデータ
+   * @throws {Error} 検索に失敗した場合
+   */
+  findByUserIdAndRoomId: async (userId, roomId) => {
+    const { data, error } = await supabase
+      .from('room_keys')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('room_id', roomId);
+
+    if (error) {
+      throw new Error(`Room key search failed: ${error.message}`);
+    }
+    return data[0];
+  },
+
 }
 
 module.exports = RoomKeysModel;
