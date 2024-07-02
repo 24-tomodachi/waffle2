@@ -1,7 +1,10 @@
+import GameState from "./states/GameState.js";
+
 const canvas = document.getElementById("screen");
 const ctx = canvas.getContext("2d");
 
 let obstacles;
+let gameState;
 
 const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -13,6 +16,8 @@ const draw = () => {
 
 const init = async () => {
   obstacles = await loadObstacles();
+  gameState = new GameState();
+  gameState.registerObjects(obstacles);
   draw();
 }
 
