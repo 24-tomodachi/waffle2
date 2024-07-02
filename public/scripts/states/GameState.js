@@ -1,3 +1,5 @@
+import GameObject from "../objects/GameObject.js";
+
 export default class GameState {
   constructor() {
     this.objects = [];

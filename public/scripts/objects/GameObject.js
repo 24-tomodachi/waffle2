@@ -1,4 +1,4 @@
-export class GameObject {
+export default class GameObject {
     constructor(x, y, width, height, imgPath, color="black") {
         this.x = x;
         this.y = y;

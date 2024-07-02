@@ -1,9 +1,9 @@
 import GameState from "./states/GameState.js";
+import GameObject from "./objects/GameObject.js";
 
 const canvas = document.getElementById("screen");
 const ctx = canvas.getContext("2d");
 
-let obstacles;
 let gameState;
 
 const draw = () => {
@@ -15,7 +15,11 @@ const draw = () => {
 }
 
 const init = async () => {
-  obstacles = await loadObstacles();
+  const obstaclesJson = await loadObstacles();
+  const obstacles = obstaclesJson.map((obstacle) => {
+    return new GameObject(obstacle.x, obstacle.y, obstacle.width, obstacle.height, obstacle.imgPath);
+  });
+
   gameState = new GameState();
   gameState.registerObjects(obstacles);
   draw();
