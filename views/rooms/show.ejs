@@ -9,6 +9,6 @@
   <%- include('../components/header') %>
   <h1><%= room.name %></h1>
   <p><%= room.description %></p>
-  <a href="/rooms/select-mode">ルームから退出する</a>
+  <a href="/rooms/leave/<%= room.id %>">ルームから退出する</a>
 </body>
 </html>

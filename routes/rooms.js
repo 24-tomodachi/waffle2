@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const RoomController = require("../src/controllers/RoomController");
 const RoomModel = require('../src/models/Room');
+const RoomKeysController = require('../src/controllers/RoomKeysController');
 
 router.get("/", RoomController.index);
 
@@ -23,6 +24,6 @@ router.post("/create", RoomController.create);
 router.get("/join/:id", RoomController.join); 
 
 router.post("/update", RoomController.update);
-router.get("/leave/:id", RoomController.leave); 
+router.get("/leave/:id", RoomKeysController.update); 
 
 module.exports = router;

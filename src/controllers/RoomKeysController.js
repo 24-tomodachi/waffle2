@@ -25,12 +25,13 @@ const RoomKeysController = {
      */
     update: async (req, res) => {
       const userId = req.userId;
-      const return_at = req.newDate();
+      const return_at = new Date().toISOString();
       if (!userId) {
         return res.status(401).json({ message: "Unauthorized" });
       }
   
-      await RoomKeysModel.update(userId,return_at);
+      await RoomKeysModel.update(userId, { return_at });
+      res.redirect('/rooms/select-mode');
     },
   }
 
