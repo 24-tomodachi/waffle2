@@ -8,8 +8,13 @@ let gameState;
 
 const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  obstacles.forEach((obstacle) => {
-    ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+  gameState.objects.forEach((object) => {
+    if (!object.img) {
+      ctx.fillStyle = object.color;
+      ctx.fillRect(object.x, object.y, object.width, object.height);
+    } else {
+      ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+    }
   });
   window.requestAnimationFrame(draw);
 }

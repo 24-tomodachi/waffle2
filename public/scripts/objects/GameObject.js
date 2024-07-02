@@ -12,13 +12,11 @@ export default class GameObject {
     }
 
     #loadImage() {
+        if(!this.imgPath) return;
         const img = new Image();
         img.src = this.imgPath;
         img.onload = () => {
             this.img = img;
-        };
-        img.onerror = (error) => {
-            console.error('Failed to load image:', error);
         };
     }
 }

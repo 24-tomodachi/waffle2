@@ -29,10 +29,10 @@ app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
+app.use('/api', apiRouter);
 app.use('/users', authCheck, userRouter);
 app.use('/rooms', authCheck, roomRouter);
 
-app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
