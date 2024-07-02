@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/users');
 const roomRouter = require('./routes/rooms');
+const apiRouter = require('./routes/api');
 
 const authCheck = require('./src/middleware/authCheck');
 
@@ -30,6 +31,8 @@ app.use('/auth', authRouter);
 
 app.use('/users', authCheck, userRouter);
 app.use('/rooms', authCheck, roomRouter);
+
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
