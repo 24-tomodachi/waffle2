@@ -33,12 +33,10 @@ const RoomKeysController = {
   
        // ここでユーザーIDとルームIDを基にroom_keysテーブルのエントリを取得
     const roomKeys = await RoomKeysModel.findByUserIdAndRoomId(userId, roomId);
-    console.log(roomKeys); // デバッグ用にログ出力
     // 取得したエントリのうち、returned_atがnullのものを更新
     for (const roomKey of roomKeys) {
       if (roomKey.returned_at === null) {
         await RoomKeysModel.update(roomKey.id, { returned_at });
-        break; // 最初のnullのエントリを更新したらループを抜ける
       }
     }
       res.redirect('/rooms/select-mode');
