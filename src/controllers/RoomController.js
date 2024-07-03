@@ -54,7 +54,7 @@ const RoomController = {
     }
 
     // RoomKeysControllerのcreateメソッドを呼び出し
-    await RoomKeysController.create(req, res);
+    RoomKeysController.create(req, res);
 
     res.redirect(`/rooms/${roomId}`);
   },
@@ -67,7 +67,7 @@ const RoomController = {
     }
 
     // RoomKeysControllerのupdateメソッドを呼び出し
-    await RoomKeysController.update(req, res);
+    RoomKeysController.update(req, res);
 
     res.redirect('/rooms/select-mode');
   }
