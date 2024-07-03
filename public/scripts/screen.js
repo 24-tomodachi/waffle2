@@ -1,5 +1,6 @@
 import GameState from "./states/GameState.js";
 import GameObject from "./objects/GameObject.js";
+import Player from "./objects/Player.js";
 
 const canvas = document.getElementById("screen");
 const ctx = canvas.getContext("2d");
@@ -26,6 +27,7 @@ const init = async () => {
   });
 
   gameState = new GameState();
+  gameState.registerObject(new Player(0, 0, 10, 10));
   gameState.registerObjects(obstacles);
   draw();
 }
