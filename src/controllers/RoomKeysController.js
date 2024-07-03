@@ -24,15 +24,12 @@ const RoomKeysController = {
      * @param {Response} res
      */
     update: async (req, res) => {
-      const roomId = req.params.id;
-      const userId = req.userId;
+      const room_id = req.params.id;
+      const user_id = req.userId;
       const returned_at = new Date().toISOString();
-      if (!userId) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
-
+     
         await RoomKeysModel
-        .update(roomKey.id, { returned_at })
+        .update({room_id,user_id}, { returned_at })
     }
   }
 

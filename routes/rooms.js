@@ -24,6 +24,6 @@ router.post("/create", RoomController.create);
 router.get("/join/:id", RoomController.join); 
 
 router.post("/update", RoomController.update);
-router.get("/leave/:id", RoomKeysController.update); 
+router.get("/leave/:id", RoomController.leave); 
 
 module.exports = router;

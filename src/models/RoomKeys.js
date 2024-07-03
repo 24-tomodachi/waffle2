@@ -36,7 +36,7 @@ const RoomKeysModel = {
       .select();
 
     if (error) {
-      throw new Error(`RoomKeys creation failed: ${error.message}`);
+      throw new Error(`RoomKeys update failed: ${error.message}`);
     }
     return data[0];
   },
