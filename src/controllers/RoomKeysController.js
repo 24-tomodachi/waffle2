@@ -30,17 +30,10 @@ const RoomKeysController = {
       if (!userId) {
         return res.status(401).json({ message: "Unauthorized" });
       }
-  
-       // ここでユーザーIDとルームIDを基にroom_keysテーブルのエントリを取得
-    const roomKeys = await RoomKeysModel.findByUserIdAndRoomId(userId, roomId);
-    // 取得したエントリのうち、returned_atがnullのものを更新
-    for (const roomKey of roomKeys) {
-      if (roomKey.returned_at === null) {
-        await RoomKeysModel.update(roomKey.id, { returned_at });
-      }
+
+        await RoomKeysModel
+        .update(roomKey.id, { returned_at })
     }
-      res.redirect('/rooms/select-mode');
-    },
   }
 
 
