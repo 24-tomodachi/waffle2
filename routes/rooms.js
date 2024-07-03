@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const RoomController = require("../src/controllers/RoomController");
 const RoomModel = require('../src/models/Room');
+const RoomKeysController = require('../src/controllers/RoomKeysController');
 
 router.get("/", RoomController.index);
 
@@ -20,6 +21,9 @@ router.get("/:id", async (req, res) => {
 })
 
 router.post("/create", RoomController.create);
-router.get("/join/:id", RoomController.join);
+router.get("/join/:id", RoomController.join); 
+
+router.post("/update", RoomController.update);
+router.get("/leave/:id", RoomController.leave); 
 
 module.exports = router;

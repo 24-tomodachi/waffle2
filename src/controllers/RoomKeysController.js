@@ -17,6 +17,21 @@ const RoomKeysController = {
   
       await RoomKeysModel.create(userId,roomId);
     },
-}
+
+    /**
+     * ルームKeysを更新する
+     * @param {Request} req
+     * @param {Response} res
+     */
+    update: async (req, res) => {
+      const room_id = req.params.id;
+      const user_id = req.userId;
+      const returned_at = new Date().toISOString();
+     
+        await RoomKeysModel
+        .update({room_id,user_id}, { returned_at })
+    }
+  }
+
 
 module.exports = RoomKeysController
