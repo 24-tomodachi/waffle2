@@ -5,7 +5,8 @@ import Player from "./objects/Player.js";
 const canvas = document.getElementById("screen");
 const ctx = canvas.getContext("2d");
 
-let gameState;
+export let gameState;
+export let interactionState;
 
 const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -29,6 +30,8 @@ const init = async () => {
   gameState = new GameState();
   gameState.registerObject(new Player(0, 0, 10, 10));
   gameState.registerObjects(obstacles);
+
+  interactionState = new InteractionState();
   draw();
 }
 
