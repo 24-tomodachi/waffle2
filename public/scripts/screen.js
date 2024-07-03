@@ -14,6 +14,7 @@ export let interactionState;
 const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   gameState.objects.forEach((object) => {
+    object.update();
     if (!object.img) {
       ctx.fillStyle = object.color;
       ctx.fillRect(object.x, object.y, object.width, object.height);

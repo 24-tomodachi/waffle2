@@ -13,7 +13,7 @@ export default class InteractionState {
    * @param {string} flag フラグ名
    * @returns {boolean} フラグが立っているか
    */
-  isFlag(flag) {
+  getFlag(flag) {
     if (this.interactFlags.hasOwnProperty(flag)) {
       return this.interactFlags[flag];
     } else {

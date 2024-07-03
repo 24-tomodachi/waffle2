@@ -11,6 +11,8 @@ export default class GameObject {
         this.#loadImage();
     }
 
+    update() {}
+
     #loadImage() {
         if(!this.imgPath) return;
         const img = new Image();
