@@ -24,23 +24,13 @@ const RoomKeysController = {
      * @param {Response} res
      */
     update: async (req, res) => {
-      const roomId = req.params.id;
-      const userId = req.userId;
+      const room_id = req.params.id;
+      const user_id = req.userId;
       const returned_at = new Date().toISOString();
-      if (!userId) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
-  
-       // ここでユーザーIDとルームIDを基にroom_keysテーブルのエントリを取得
-    const roomKeys = await RoomKeysModel.findByUserIdAndRoomId(userId, roomId);
-    // 取得したエントリのうち、returned_atがnullのものを更新
-    for (const roomKey of roomKeys) {
-      if (roomKey.returned_at === null) {
-        await RoomKeysModel.update(roomKey.id, { returned_at });
-      }
+     
+        await RoomKeysModel
+        .update({room_id,user_id}, { returned_at })
     }
-      res.redirect('/rooms/select-mode');
-    },
   }
 
 

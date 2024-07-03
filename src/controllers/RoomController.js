@@ -54,19 +54,20 @@ const RoomController = {
     }
 
     // RoomKeysControllerのcreateメソッドを呼び出し
-    await RoomKeysController.create(req, res);
+    RoomKeysController.create(req, res);
 
     res.redirect(`/rooms/${roomId}`);
   },
 
   leave: async(req, res) => {
+    const roomId = req.params.id;
     const userId = req.userId;
-    const returned_at = req.newDate();
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
-    await RoomKeysModel.update(userId,returned_at);
+    // RoomKeysControllerのupdateメソッドを呼び出し
+    RoomKeysController.update(req, res);
 
     res.redirect('/rooms/select-mode');
   }

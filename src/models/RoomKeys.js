@@ -23,44 +23,23 @@ const RoomKeysModel = {
 
       /**
    * ルームKeysを更新する。
-   * @param {number} id ID
+   * @param {Object} where 条件を格納したオブジェクト
    * @param {Object} updateData 更新する情報
    * @returns {Object} 更新されたデータ
    *  @throws {Error} ルームの作成に失敗した場合
    */
-  update: async (id, updateData) => {
+  update: async (where, updateData) => {
     const { data, error } = await supabase
       .from('room_keys')
       .update(updateData)
-      .eq('id', id)
+      .match(where)
       .select();
 
     if (error) {
-      throw new Error(`RoomKeys creation failed: ${error.message}`);
+      throw new Error(`RoomKeys update failed: ${error.message}`);
     }
     return data[0];
   },
-
-  /**
-   * ユーザーIDとルームIDを基にroom_keysテーブルのエントリを検索する
-   * @param {string} userId ユーザーID
-   * @param {string} roomId ルームID
-   * @returns {Object} 検索されたデータ
-   * @throws {Error} 検索に失敗した場合
-   */
-  findByUserIdAndRoomId: async (userId, roomId) => {
-    const { data, error } = await supabase
-      .from('room_keys')
-      .select('*')
-      .eq('user_id', userId)
-      .eq('room_id', roomId);
-
-    if (error) {
-      throw new Error(`Room key search failed: ${error.message}`);
-    }
-    return data;
-  },
-
 }
 
 module.exports = RoomKeysModel;

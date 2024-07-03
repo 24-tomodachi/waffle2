@@ -1,28 +1,61 @@
 body {
-    background-color: #EFCA83; /* 背景色 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  margin: 150px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/image/waffle1.png');  
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.button-container {
-    display: flex;
-    gap: 100px; /* ボタン間のスペース */
+/*フォント英語専用*/
+.poetsen-one-regular {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #fff;
+}
+/*フォント日本語専用*/
+.kosugi-maru-regular {
+  font-family: "Kosugi Maru", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #fff;
 }
 
-.custom-button {
-    background-color: #A16452; /* ボタンの背景色 */
-    color: white; /* ボタンのテキスト色 */
-    border: none;
-    padding: 30px 60px;
-    border-radius: 20px; /* 角丸 */
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.btn a {
+  padding: 10px;
+  background-color: #ffeca1;
+  border: none;
+  border-radius: 30px;
+  font-size: 1em;
+  cursor: pointer;
+  color: #A16452;
+  text-decoration: none;
 }
 
-.custom-button:hover {
-    background-color: #6E4520; /* ホバー時の背景色 */
+.btn a:hover {
+  background-color: #d2c385;
+}
+
+.btn {
+  height: fit-content;
+}
+
+
+.margin {
+  margin: 130px;
+}
+
+.flex {
+  display: flex; /*横並び*/
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.roomname {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;   /* テキストが溢れた場合に「...」を表示する */
+  max-width: 200px;
 }
