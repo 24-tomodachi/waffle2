@@ -18,7 +18,6 @@ const authCheck = (req, res, next) => {
       res.clearCookie("token");
       return res.redirect("/auth/signin");
     }
-    next(err);
   }
 };
 
