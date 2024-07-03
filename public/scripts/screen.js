@@ -1,6 +1,8 @@
 import GameState from "./states/GameState.js";
 import GameObject from "./objects/GameObject.js";
 import Player from "./objects/Player.js";
+import { handleKeyDown } from "./handlers/handleKeyDown.js";
+import { handleKeyUp } from "./handlers/handleKeyUp.js";
 
 const canvas = document.getElementById("screen");
 const ctx = canvas.getContext("2d");
@@ -21,7 +23,14 @@ const draw = () => {
   window.requestAnimationFrame(draw);
 }
 
+const registerEvents = () => {
+  window.addEventListener("keydown", handleKeyDown);
+  window.addEventListener("keyup", handleKeyUp);
+}
+
 const init = async () => {
+  registerEvents();
+
   const obstaclesJson = await loadObstacles();
   const obstacles = obstaclesJson.map((obstacle) => {
     return new GameObject(obstacle.x, obstacle.y, obstacle.width, obstacle.height, obstacle.imgPath);
