@@ -1,3 +1,5 @@
+import { interactionState } from "../screen.js";
+
 export const handleKeyUp = (e) => {
   if (e.key === "ArrowUp" || e.key === "w") {
     interactionState.setFlag("up", false);

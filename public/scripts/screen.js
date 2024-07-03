@@ -1,4 +1,5 @@
 import GameState from "./states/GameState.js";
+import InteractionState from "./states/InteractionState.js";
 import GameObject from "./objects/GameObject.js";
 import Player from "./objects/Player.js";
 import { handleKeyDown } from "./handlers/handleKeyDown.js";
