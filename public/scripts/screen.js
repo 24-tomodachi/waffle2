@@ -1,6 +1,6 @@
 import GameState from "./states/GameState.js";
 import InteractionState from "./states/InteractionState.js";
-import GameObject from "./objects/GameObject.js";
+import CollidableObject from "./objects/CollidableObject.js";
 import Player from "./objects/Player.js";
 import { handleKeyDown } from "./handlers/handleKeyDown.js";
 import { handleKeyUp } from "./handlers/handleKeyUp.js";
@@ -35,7 +35,7 @@ const init = async () => {
 
   const obstaclesJson = await loadObstacles();
   const obstacles = obstaclesJson.map((obstacle) => {
-    return new GameObject(obstacle.x, obstacle.y, obstacle.width, obstacle.height, obstacle.imgPath);
+    return new CollidableObject(obstacle.x, obstacle.y, obstacle.width, obstacle.height, obstacle.imgPath);
   });
 
   gameState = new GameState();
