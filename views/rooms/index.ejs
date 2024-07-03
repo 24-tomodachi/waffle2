@@ -1,18 +1,40 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ルーム一覧</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <!--英語用-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <!--日本語用-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="kosugi-maru-regular">
+    <!--ログアウトのやつ-->
     <%- include('../components/header') %>
+    
+    <div class="margin">
     <% for (const room of rooms) { %>
-        <a href="/rooms/join/<%= room.id %>"><%= room.name %></a>
-        <p><%= room.description %></p>
-
+        <div class="flex"><!--横並び-->
+            <div class="left"><!--左寄せ-->
+                <div class="roomname"><!--ルーム名が長すぎる時用-->
+                    <%= room.name %>
+                </div>
+                <p><%= room.description %></p>
+            </div>
+            <div class="btn"><!--右寄せ-->
+                <a href="/rooms/join/<%= room.id %>">入室する</a>
+            </div>
+        </div>
         <hr>
     <% } %>
+    </div>
 </body>
 </html>
+

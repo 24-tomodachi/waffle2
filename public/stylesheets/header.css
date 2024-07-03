@@ -1,0 +1,22 @@
+.button a {
+    padding: 10px;
+    background-color: #ffeca1;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    color: #A16452;
+    text-decoration: none;
+}
+
+.button {
+    width: fit-content;
+}
+
+.button a:hover {
+    background-color: #d2c385;
+}
+
+.header{
+    z-index:10;
+}
