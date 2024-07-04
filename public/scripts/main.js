@@ -1,6 +1,9 @@
 import { initScreen } from './screen.js';
 
 const socket = io();
-socket.emit("join", { roomId: "test", userId: "test" });
+
+window.addEventListener('beforeunload', () => {
+  socket.disconnect();
+});
 
 initScreen();

@@ -12,9 +12,10 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 io.on("connection", (socket) => {
-  socket.on("join", (data) => {
-    const { roomId, userId } = data;
-    console.log(`user joined: ${userId} to room: ${roomId}`);
+  console.log(`user connected: ${socket.id}`);
+
+  socket.on("disconnect", () => {
+    console.log(`user disconnected: ${socket.id}`);
   });
 });
 
@@ -25,6 +26,7 @@ const roomRouter = require('./routes/rooms');
 const apiRouter = require('./routes/api');
 
 const authCheck = require('./src/middleware/authCheck');
+const { log } = require('console');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
