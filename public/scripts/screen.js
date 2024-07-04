@@ -30,7 +30,7 @@ const registerEvents = () => {
   window.addEventListener("keyup", handleKeyUp);
 }
 
-const init = async () => {
+export const initScreen = async () => {
   registerEvents();
 
   const obstaclesJson = await loadObstacles();
@@ -53,5 +53,3 @@ const loadObstacles = async () => {
   }
   return await response.json();
 };
-
-init();
