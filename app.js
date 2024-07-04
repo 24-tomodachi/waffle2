@@ -19,6 +19,10 @@ io.on("connection", (socket) => {
     console.log(`user disconnected: ${socket.id}`);
     socket.broadcast.emit("leave", { socketId: socket.id });
   });
+
+  socket.on("setFlag", (data) => {
+    socket.broadcast.emit("setFlag", { socketId: data.socketId, flag: data.flag, value: data.value });
+  });
 });
 
 const indexRouter = require('./routes/index');

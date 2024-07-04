@@ -51,6 +51,11 @@ export const removePlayer = (socketId) => {
   gameState.objects = gameState.objects.filter((object) => object.id !== socketId);
 }
 
+export const setPlayerFlag = (socketId, flag, value) => {
+  const player = getPlayer(socketId);
+  player.interactionState.setFlag(flag, value);
+}
+
 export const getPlayer = (socketId) => {
   return gameState.objects.find((object) => object.id === socketId);
 }

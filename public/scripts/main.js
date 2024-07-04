@@ -1,5 +1,5 @@
 import { initScreen } from './screen.js';
-import { addPlayer, removePlayer } from './screen.js';
+import { addPlayer, removePlayer, setPlayerFlag } from './screen.js';
 
 await initScreen();
 
@@ -12,6 +12,9 @@ socket.on("connect", () => {
 socket.on("join", (data) => {
   console.log(`user joined: ${data.socketId}`);
   addPlayer(data.socketId);
+});
+socket.on("setFlag", (data) => {
+  setPlayerFlag(data.socketId, data.flag, data.value);
 });
 socket.on("leave", (data) => {
   console.log(`user leaved: ${data.socketId}`);
