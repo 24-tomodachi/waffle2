@@ -1,13 +1,16 @@
-import { interactionState } from "../screen.js";
+import { gameState } from "../screen.js";
+import { socket } from "../main.js";
 
 export const handleKeyDown = (e) => {
+  const player = gameState.objects.find((object) => object.id === socket.id);
+
   if (e.key === "ArrowUp" || e.key === "w") {
-    interactionState.setFlag("up", true);
+    player.interactionState.setFlag("up", true);
   } else if (e.key === "ArrowDown" || e.key === "s") {
-    interactionState.setFlag("down", true);
+    player.interactionState.setFlag("down", true);
   } else if (e.key === "ArrowLeft" || e.key === "a") {
-    interactionState.setFlag("left", true);
+    player.interactionState.setFlag("left", true);
   } else if (e.key === "ArrowRight" || e.key === "d") {
-    interactionState.setFlag("right", true);
+    player.interactionState.setFlag("right", true);
   }
 };

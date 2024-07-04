@@ -3,16 +3,19 @@ import { addPlayer, removePlayer } from './screen.js';
 
 await initScreen();
 
-const socket = io();
-addPlayer(socket.id);
+export const socket = io();
 
+socket.on("connect", () => {
+  console.log(`connected: ${socket.id}`);
+  addPlayer(socket.id);
+});
 socket.on("join", (data) => {
-  console.log(`user joined: ${data.userSessionId}`);
-  addPlayer(data.userSessionId);
+  console.log(`user joined: ${data.socketId}`);
+  addPlayer(data.socketId);
 });
 socket.on("leave", (data) => {
-  console.log(`user leaved: ${data.userSessionId}`);
-  removePlayer(data.userSessionId);
+  console.log(`user leaved: ${data.socketId}`);
+  removePlayer(data.socketId);
 });
 
 window.addEventListener('beforeunload', () => {

@@ -13,11 +13,11 @@ const io = new Server(server);
 
 io.on("connection", (socket) => {
   console.log(`user connected: ${socket.id}`);
-  socket.broadcast.emit("join", { userSessionId: socket.id });
+  socket.broadcast.emit("join", { socketId: socket.id });
 
   socket.on("disconnect", () => {
     console.log(`user disconnected: ${socket.id}`);
-    socket.broadcast.emit("leave", { userSessionId: socket.id });
+    socket.broadcast.emit("leave", { socketId: socket.id });
   });
 });
 

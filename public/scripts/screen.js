@@ -1,5 +1,4 @@
 import GameState from "./states/GameState.js";
-import InteractionState from "./states/InteractionState.js";
 import CollidableObject from "./objects/CollidableObject.js";
 import Player from "./objects/Player.js";
 import { handleKeyDown } from "./handlers/handleKeyDown.js";
@@ -9,7 +8,6 @@ const canvas = document.getElementById("screen");
 const ctx = canvas.getContext("2d");
 
 export let gameState;
-export let interactionState;
 
 const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -41,8 +39,6 @@ export const initScreen = async () => {
   gameState = new GameState();
   gameState.registerObject(new Player(0, 0, 10, 10));
   gameState.registerObjects(obstacles);
-
-  interactionState = new InteractionState();
   draw();
 }
 
@@ -53,6 +49,10 @@ export const addPlayer = (socketId) => {
 
 export const removePlayer = (socketId) => {
   gameState.objects = gameState.objects.filter((object) => object.id !== socketId);
+}
+
+export const getPlayer = (socketId) => {
+  return gameState.objects.find((object) => object.id === socketId);
 }
 
 const loadObstacles = async () => {
