@@ -4,8 +4,9 @@ import { interactionState } from "../screen.js";
 export const SPEED = 3;
 
 export default class Player extends GameObject {
-  constructor(x, y, width, height, imgPath) {
+  constructor(id, x, y, width, height, imgPath) {
     super(x, y, width, height, imgPath);
+    this.id = id;
     this.color = "red";
   }
 

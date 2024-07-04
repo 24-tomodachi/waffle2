@@ -46,6 +46,15 @@ export const initScreen = async () => {
   draw();
 }
 
+export const addPlayer = (socketId) => {
+  const player = new Player(socketId, 0, 0, 10, 10);
+  gameState.registerObject(player);
+}
+
+export const removePlayer = (socketId) => {
+  gameState.objects = gameState.objects.filter((object) => object.id !== socketId);
+}
+
 const loadObstacles = async () => {
   const response = await fetch('/api/map');
   if (!response.ok) {
