@@ -17,6 +17,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log(`user disconnected: ${socket.id}`);
+    socket.broadcast.emit("leave", { userSessionId: socket.id });
   });
 });
 
