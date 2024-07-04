@@ -11,6 +11,13 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+io.on("connection", (socket) => {
+  socket.on("join", (data) => {
+    const { roomId, userId } = data;
+    console.log(`user joined: ${userId} to room: ${roomId}`);
+  });
+});
+
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/users');
@@ -28,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname,'public','favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
@@ -39,12 +46,12 @@ app.use('/rooms', authCheck, roomRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
