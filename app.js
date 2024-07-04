@@ -4,6 +4,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const { Server } = require('socket.io');
+const http = require('http');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -12,8 +18,6 @@ const roomRouter = require('./routes/rooms');
 const apiRouter = require('./routes/api');
 
 const authCheck = require('./src/middleware/authCheck');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,4 +54,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = { app, server, io };
