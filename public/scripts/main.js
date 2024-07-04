@@ -13,6 +13,12 @@ socket.on("join", (data) => {
   console.log(`user joined: ${data.socketId}`);
   addPlayer(data.socketId);
 });
+socket.on("initRoom", (data) => {
+  const socketIds = data.socketIds;
+  for(const socketId of socketIds) {
+    addPlayer(socketId);
+  } 
+});
 socket.on("setFlag", (data) => {
   setPlayerFlag(data.socketId, data.flag, data.value);
 });

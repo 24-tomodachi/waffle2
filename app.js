@@ -13,6 +13,7 @@ const io = new Server(server);
 
 io.on("connection", (socket) => {
   console.log(`user connected: ${socket.id}`);
+  socket.emit("initRoom", { socketIds: Array.from(io.sockets.sockets.keys()) });
   socket.broadcast.emit("join", { socketId: socket.id });
 
   socket.on("disconnect", () => {
