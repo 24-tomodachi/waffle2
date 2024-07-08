@@ -10,6 +10,7 @@ const UserController = {
   update: async (req, res) => {
     const { name, description } = req.body;
     const userId = req.userId;
+    console.log(userId);
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
       }
