@@ -57,12 +57,12 @@ const RoomController = {
    // 既に参加していて、退出していないか確認
    const existingRoomKey = await RoomKeysModel.findByUserIdAndRoomId(userId, roomId);
    if (existingRoomKey && !existingRoomKey.returned_at) {
-    
-   }
-
-   // RoomKeysControllerのcreateメソッドを呼び出し
+    return res.redirect(`/rooms/${roomId}`);
+   } else {
+    // RoomKeysControllerのcreateメソッドを呼び出し
    RoomKeysController.create(req, res);
    return res.redirect(`/rooms/${roomId}`);
+   }
  },
 
   leave: async(req, res) => {
