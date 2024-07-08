@@ -13,9 +13,13 @@
 <body class="kosugi-maru-regular">
     <div class="container">
         <div class="profile-box">
-            <div class="profile-picture"></div>
-            ユーザー名
-            <div class="comment"></div>
+            <div class="profile-picture">
+                <img src="<%= user.avatar || '/images/default-avatar.png' %>" alt="">
+            </div>
+            <h1><%= user.name %></h1>
+            <div class="comment">
+                <p><%= user.bio %></p>
+            </div>
             <button class="back-button" onclick="goBack()">戻る</button>
         </div>
     </div>

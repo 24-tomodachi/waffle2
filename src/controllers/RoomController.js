@@ -21,6 +21,22 @@ const RoomController = {
   },
 
   /**
+   * ルームから退出する。
+   * @param {Request} req
+   * @param {Response} res
+   */
+  update: async (req, res) => {
+    const returned_at = req.body;
+    const userId = req.userId;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    await RoomModel.update(userId,returned_at);
+
+    res.status(201).redirect("/rooms/select-mode/");
+  },
+  /**
    * すべてのルームを表示する。
    * @param {Request} req
    * @param {Response} res
@@ -38,10 +54,23 @@ const RoomController = {
     }
 
     // RoomKeysControllerのcreateメソッドを呼び出し
-    await RoomKeysController.create(req, res);
+    RoomKeysController.create(req, res);
 
     res.redirect(`/rooms/${roomId}`);
   },
+
+  leave: async(req, res) => {
+    const roomId = req.params.id;
+    const userId = req.userId;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    // RoomKeysControllerのupdateメソッドを呼び出し
+    RoomKeysController.update(req, res);
+
+    res.redirect('/rooms/select-mode');
+  }
 }
 
 module.exports = RoomController
