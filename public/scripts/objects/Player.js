@@ -1,22 +1,24 @@
 import GameObject from "./GameObject.js";
-import { interactionState } from "../screen.js";
+import InteractionState from "../states/InteractionState.js";
 
 export const SPEED = 3;
 
 export default class Player extends GameObject {
-  constructor(x, y, width, height, imgPath) {
+  constructor(id, x, y, width, height, imgPath) {
     super(x, y, width, height, imgPath);
+    this.id = id;
+    this.interactionState = new InteractionState();
     this.color = "red";
   }
 
   update() {
-    if (interactionState.getFlag("up")) {
+    if (this.interactionState.getFlag("up")) {
       this.y -= SPEED;
-    } else if (interactionState.getFlag("down")) {
+    } else if (this.interactionState.getFlag("down")) {
       this.y += SPEED;
-    } else if (interactionState.getFlag("left")) {
+    } else if (this.interactionState.getFlag("left")) {
       this.x -= SPEED;
-    } else if (interactionState.getFlag("right")) {
+    } else if (this.interactionState.getFlag("right")) {
       this.x += SPEED;
     }
   }

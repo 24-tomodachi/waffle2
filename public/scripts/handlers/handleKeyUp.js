@@ -1,13 +1,24 @@
-import { interactionState } from "../screen.js";
+import { gameState } from "../screen.js";
+import { socket, roomId } from "../main.js";
 
 export const handleKeyUp = (e) => {
+  const player = gameState.objects.find((object) => object.id === socket.id);
+
   if (e.key === "ArrowUp" || e.key === "w") {
-    interactionState.setFlag("up", false);
+    emitSetFlag("up", false);
+    player.interactionState.setFlag("up", false);
   } else if (e.key === "ArrowDown" || e.key === "s") {
-    interactionState.setFlag("down", false);
+    emitSetFlag("down", false);
+    player.interactionState.setFlag("down", false);
   } else if (e.key === "ArrowLeft" || e.key === "a") {
-    interactionState.setFlag("left", false);
+    emitSetFlag("left", false);
+    player.interactionState.setFlag("left", false);
   } else if (e.key === "ArrowRight" || e.key === "d") {
-    interactionState.setFlag("right", false);
+    emitSetFlag("right", false);
+    player.interactionState.setFlag("right", false);
   }
 }
+
+const emitSetFlag = (flag, value) => {
+  socket.emit("setFlag", { roomId, socketId: socket.id, flag: flag, value: value });
+};
