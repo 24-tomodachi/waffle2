@@ -52,7 +52,7 @@ const RoomController = {
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-
+    
     // RoomKeysControllerのcreateメソッドを呼び出し
     RoomKeysController.create(req, res);
 
