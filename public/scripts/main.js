@@ -4,9 +4,12 @@ import { addPlayer, removePlayer, setPlayerFlag } from './screen.js';
 await initScreen();
 
 export const socket = io();
+const roomId = window.location.pathname.split("/")[2];
 
 socket.on("connect", () => {
   console.log(`connected: ${socket.id}`);
+
+  socket.emit("join", { roomId });
 });
 socket.on("join", (data) => {
   console.log(`user joined: ${data.socketId}`);

@@ -13,8 +13,14 @@ const io = new Server(server);
 
 io.on("connection", (socket) => {
   console.log(`user connected: ${socket.id}`);
-  socket.emit("initRoom", { socketIds: Array.from(io.sockets.sockets.keys()) });
-  socket.broadcast.emit("join", { socketId: socket.id });
+
+  socket.on("join", (data) => {
+    const roomId = data.roomId;
+    socket.join(roomId);
+    socket.to(roomId).emit("join", { socketId: socket.id });
+    const roomSockets = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
+    socket.emit("initRoom", { socketIds: roomSockets });
+  });
 
   socket.on("disconnect", () => {
     console.log(`user disconnected: ${socket.id}`);
