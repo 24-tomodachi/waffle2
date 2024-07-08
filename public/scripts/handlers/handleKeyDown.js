@@ -1,5 +1,5 @@
 import { gameState } from "../screen.js";
-import { socket } from "../main.js";
+import { socket, roomId } from "../main.js";
 
 export const handleKeyDown = (e) => {
   const player = gameState.objects.find((object) => object.id === socket.id);
@@ -20,5 +20,5 @@ export const handleKeyDown = (e) => {
 };
 
 const emitSetFlag = (flag, value) => {
-  socket.emit("setFlag", { socketId: socket.id, flag: flag, value: value });
+  socket.emit("setFlag", { roomId, socketId: socket.id, flag: flag, value: value });
 };

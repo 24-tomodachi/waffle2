@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("setFlag", (data) => {
-    socket.broadcast.emit("setFlag", { socketId: data.socketId, flag: data.flag, value: data.value });
+    socket.to(data.roomId).emit("setFlag", { socketId: data.socketId, flag: data.flag, value: data.value });
   });
 
   socket.on("leave", (data) => {

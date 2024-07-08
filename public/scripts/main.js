@@ -4,7 +4,7 @@ import { addPlayer, removePlayer, setPlayerFlag } from './screen.js';
 await initScreen();
 
 export const socket = io();
-const roomId = window.location.pathname.split("/")[2];
+export const roomId = window.location.pathname.split("/")[2];
 
 socket.on("connect", () => {
   console.log(`connected: ${socket.id}`);
