@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
 <body class="kosugi-maru-regular">
+    <form action="/users/update" method="post">
     <div class="header">
         <h1>プロフィール情報</h1>
     </div>
@@ -51,9 +52,9 @@
                 errorMessage.textContent = "";
                 errorMessage.style.border = "";
                 usernameInput.classList.remove('error');
-                window.location.href = "/rooms/index";
             }
         }
     </script>
+    </form>
 </body>
 </html>
