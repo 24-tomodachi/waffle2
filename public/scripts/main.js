@@ -7,7 +7,6 @@ export const socket = io();
 
 socket.on("connect", () => {
   console.log(`connected: ${socket.id}`);
-  addPlayer(socket.id);
 });
 socket.on("join", (data) => {
   console.log(`user joined: ${data.socketId}`);
@@ -17,7 +16,7 @@ socket.on("initRoom", (data) => {
   const socketIds = data.socketIds;
   for(const socketId of socketIds) {
     addPlayer(socketId);
-  } 
+  }
 });
 socket.on("setFlag", (data) => {
   setPlayerFlag(data.socketId, data.flag, data.value);

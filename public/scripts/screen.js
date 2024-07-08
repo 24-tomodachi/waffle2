@@ -37,7 +37,6 @@ export const initScreen = async () => {
   });
 
   gameState = new GameState();
-  gameState.registerObject(new Player(0, 0, 10, 10));
   gameState.registerObjects(obstacles);
   draw();
 }
