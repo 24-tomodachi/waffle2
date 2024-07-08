@@ -24,11 +24,16 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log(`user disconnected: ${socket.id}`);
-    socket.broadcast.emit("leave", { socketId: socket.id });
   });
 
   socket.on("setFlag", (data) => {
     socket.broadcast.emit("setFlag", { socketId: data.socketId, flag: data.flag, value: data.value });
+  });
+
+  socket.on("leave", (data) => {
+    const roomId = data.roomId;
+    socket.leave(roomId);
+    socket.to(roomId).emit("leave", { socketId: socket.id });
   });
 });
 

@@ -28,6 +28,9 @@ socket.on("leave", (data) => {
   console.log(`user leaved: ${data.socketId}`);
   removePlayer(data.socketId);
 });
+socket.on("disconnecting", () => {
+  socket.emit("leave", { socketId: socket.id, roomId });
+});
 
 window.addEventListener('beforeunload', () => {
   socket.disconnect();
