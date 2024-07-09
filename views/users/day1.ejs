@@ -12,21 +12,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body class="kosugi-maru-regular">
-    <form id="profile-form" enctype="multipart/form-data" action="/users/update" method="post">
         <div class="header">
             <h1>プロフィール情報</h1>
         </div>
         <div class="container">
             <div class="profile-box">
+                <form id="profile-form" enctype="multipart/form-data" action="/users/update" method="post">
                 <div class="profile-picture" onclick="document.getElementById('file-input').click();"></div>
                 <input type="file" id="file-input" name="image" style="display: none;" accept="image/*" onchange="loadProfilePicture(event)">
                 <input type="text" id="username" name="name" class="username" placeholder="自分のユーザー名" required>
                 <p id="error-message" class="error-message"></p>
                 <textarea class="comment" name="description" placeholder="一言コメント"></textarea>
                 <button class="save-button" type="submit" onclick="validateAndSubmit(event)">保存する</button>
+            </form>
             </div>
         </div>
-    </form>
     <script>
         // Supabaseの初期化
         const supabaseUrl = 'https://your-supabase-url.supabase.co';
@@ -38,7 +38,7 @@
             const file = event.target.files[0]; // 選択された画像を取得
             const filePath = `profile-images/${file.name}`; // 画像の保存先のpathを指定
             const { error } = await supabase.storage
-                .from('your-bucket-name') // your-bucket-nameを実際のバケット名に変更
+                .from('profile_images') 
                 .upload(filePath, file);
             if (error) {
                 // ここでエラーハンドリング
