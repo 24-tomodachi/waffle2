@@ -21,7 +21,9 @@ export const handleKeyDown = (e) => {
 
   if (e.key >= "0" && e.key <= "9") {
     const reaction = new Reaction(player, `/image/reaction${e.key}.svg`);
-    gameState.objects.push(reaction);
+    gameState.registerObject(reaction);
+
+    socket.emit("reaction", { roomId, socketId: socket.id, reaction: reaction, reactionPattern: e.key });
   }
 };
 
