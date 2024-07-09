@@ -9,43 +9,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body class="kosugi-maru-regular">
-        <div class="header">
-            <h1>プロフィール情報</h1>
+    <div class="header">
+        <h1>プロフィール情報</h1>
+    </div>
+    <div class="container">
+        <div class="profile-box">
+            <form action="/users/update" method="post">
+            <div class="profile-picture" onclick="document.getElementById('file-input').click();"></div>
+            <input type="file" id="file-input" style="display: none;" accept="image/*" onchange="loadProfilePicture(event)">
+            <input type="text" id="username" name="name" class="username" placeholder="自分のユーザー名" required>
+            <p id="error-message" class="error-message"></p>
+            <textarea class="comment" name="description" placeholder="一言コメント"></textarea>
+            <button class="save-button" onclick="validateAndSubmit()">保存する</button>
+        </form>
         </div>
-        <div class="container">
-            <div class="profile-box">
-                <form id="profile-form" enctype="multipart/form-data" action="/users/update" method="post">
-                <div class="profile-picture" onclick="document.getElementById('file-input').click();"></div>
-                <input type="file" id="file-input" name="image" style="display: none;" accept="image/*" onchange="loadProfilePicture(event)">
-                <input type="text" id="username" name="name" class="username" placeholder="自分のユーザー名" required>
-                <p id="error-message" class="error-message"></p>
-                <textarea class="comment" name="description" placeholder="一言コメント"></textarea>
-                <button class="save-button" type="submit" onclick="validateAndSubmit(event)">保存する</button>
-            </form>
-            </div>
-        </div>
+    </div>
     <script>
-        // Supabaseの初期化
-        const supabaseUrl = 'https://your-supabase-url.supabase.co';
-        const supabaseKey = 'your-anon-key';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-        const handleImageChange = async (event) => {
-
-            const file = event.target.files[0]; // 選択された画像を取得
-            const filePath = `profile-images/${file.name}`; // 画像の保存先のpathを指定
-            const { error } = await supabase.storage
-                .from('profile_images') 
-                .upload(filePath, file);
-            if (error) {
-                // ここでエラーハンドリング
-                console.error('Upload error:', error.message);
-            }
-        };
-
         function loadProfilePicture(event) {
             const profilePicture = document.querySelector('.profile-picture');
             const file = event.target.files[0];
@@ -58,11 +39,9 @@
             if (file) {
                 reader.readAsDataURL(file);
             }
-
-            handleImageChange(event);
         }
 
-        function validateAndSubmit(event) {
+        function validateAndSubmit() {
             const username = document.getElementById('username').value;
             const errorMessage = document.getElementById('error-message');
             const usernameInput = document.getElementById('username');
