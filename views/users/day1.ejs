@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
 <body class="kosugi-maru-regular">
+    <form action="/users/update" method="post">
     <div class="header">
         <h1>プロフィール情報</h1>
     </div>
@@ -18,9 +19,9 @@
         <div class="profile-box">
             <div class="profile-picture" onclick="document.getElementById('file-input').click();"></div>
             <input type="file" id="file-input" style="display: none;" accept="image/*" onchange="loadProfilePicture(event)">
-            <input type="text" id="username" class="username" placeholder="自分のユーザー名" required>
+            <input type="text" id="username" name="name" class="username" placeholder="自分のユーザー名" required>
             <p id="error-message" class="error-message"></p>
-            <textarea class="comment" placeholder="一言コメント"></textarea>
+            <textarea class="comment" name="description" placeholder="一言コメント"></textarea>
             <button class="save-button" onclick="validateAndSubmit()">保存する</button>
         </div>
     </div>
@@ -51,9 +52,9 @@
                 errorMessage.textContent = "";
                 errorMessage.style.border = "";
                 usernameInput.classList.remove('error');
-                window.location.href = "/rooms/index";
             }
         }
     </script>
+    </form>
 </body>
 </html>

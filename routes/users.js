@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../src/models/User');
+const UserController = require("../src/controllers/UserController");
 
 router.get("/day1", (req, res) => {
   res.render("users/day1");
@@ -23,5 +24,7 @@ router.get("/:id/edit", (req, res) => {
   // TODO: 本人以外は編集画面に遷移できないようにする
   res.render("users/edit");
 });
+
+router.post("/update", UserController.update);
 
 module.exports = router;
