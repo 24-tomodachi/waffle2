@@ -15,9 +15,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
 <body class="kosugi-maru-regular poetsen-one-regular">
-    <% console.error(error.stack) %>
     <img src="https://http.cat/<%= error.status %>">
     <h2>エラーが発生しました。</h2>
+    <details>
+        <summary>全文を表示</summary>
+        <pre><%= error.stack %></pre>
+    </details>
     <a href="/auth/signin">ログインページへ</a>
 </body>
 </html>
