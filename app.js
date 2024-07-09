@@ -26,6 +26,9 @@ io.on("connection", (socket) => {
     console.log(`user disconnected: ${socket.id}`);
   });
 
+  socket.on("reaction", (data) => {
+    socket.to(data.roomId).emit("reaction", { socketId: data.socketId, reaction: data.reaction, reactionPattern: data.reactionPattern });
+  });
   socket.on("setFlag", (data) => {
     socket.to(data.roomId).emit("setFlag", { socketId: data.socketId, flag: data.flag, value: data.value });
   });
@@ -44,7 +47,6 @@ const roomRouter = require('./routes/rooms');
 const apiRouter = require('./routes/api');
 
 const authCheck = require('./src/middleware/authCheck');
-const { log } = require('console');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -17,6 +17,10 @@ export default class GameState {
     });
   }
 
+  removeObject(object) {
+    this.objects = this.objects.filter((obj) => obj !== object);
+  }
+
   findByClass(cls) {
     return this.objects.filter((object) => object instanceof cls);
   }
