@@ -19,8 +19,8 @@ export const handleKeyDown = (e) => {
     player.interactionState.setFlag("right", true);
   }
 
-  if (e.key === "1") {
-    const reaction = new Reaction(player, "/image/reaction1.svg");
+  if (e.key >= "0" && e.key <= "9") {
+    const reaction = new Reaction(player, `/image/reaction${e.key}.svg`);
     gameState.objects.push(reaction);
   }
 };
