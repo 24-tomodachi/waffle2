@@ -42,7 +42,7 @@ export const initScreen = async () => {
 }
 
 export const addPlayer = (socketId) => {
-  const player = new Player(socketId, 0, 0, 10, 10);
+  const player = new Player(socketId, 0, 0, 30, 30);
   gameState.registerObject(player);
 }
 

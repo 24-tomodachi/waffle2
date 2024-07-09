@@ -1,5 +1,6 @@
 import { gameState } from "../screen.js";
 import { socket, roomId } from "../main.js";
+import { Reaction } from "../objects/Reaction.js";
 
 export const handleKeyDown = (e) => {
   const player = gameState.objects.find((object) => object.id === socket.id);
@@ -16,6 +17,13 @@ export const handleKeyDown = (e) => {
   } else if (e.key === "ArrowRight" || e.key === "d") {
     emitSetFlag("right", true);
     player.interactionState.setFlag("right", true);
+  }
+
+  if (e.key >= "0" && e.key <= "9") {
+    const reaction = new Reaction(player, `/image/reaction${e.key}.svg`);
+    gameState.registerObject(reaction);
+
+    socket.emit("reaction", { roomId, socketId: socket.id, reaction: reaction, reactionPattern: e.key });
   }
 };
 
