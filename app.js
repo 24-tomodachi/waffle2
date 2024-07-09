@@ -47,7 +47,6 @@ const roomRouter = require('./routes/rooms');
 const apiRouter = require('./routes/api');
 
 const authCheck = require('./src/middleware/authCheck');
-const { log } = require('console');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
