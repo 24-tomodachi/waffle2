@@ -40,11 +40,8 @@ socket.on("leave", (data) => {
   removePlayer(data.socketId);
 });
 
-socket.on("disconnecting", () => {
-  socket.emit("leave", { socketId: socket.id, roomId });
-});
-
 window.addEventListener('beforeunload', () => {
+  socket.emit("leave", { socketId: socket.id, roomId });
   socket.disconnect();
 });
 
