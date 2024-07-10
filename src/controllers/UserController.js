@@ -34,6 +34,9 @@ const UserController = {
       profilePicturePath = `/uploads/${req.file.originalname}`;
     }
 
+    // TODO: S3 にアップロード
+    // TODO: upload が終わったらサーバ上から削除
+
     await UserModel.updateById(userId,{name,description});
 
     res.status(201).redirect("/rooms/select-mode/");
