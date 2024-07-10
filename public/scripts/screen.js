@@ -66,3 +66,5 @@ const loadObstacles = async () => {
   }
   return await response.json();
 };
+
+
