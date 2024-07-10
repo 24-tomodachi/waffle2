@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const UserModel = require('../src/models/User');
 const UserController = require("../src/controllers/UserController");
+const multer = require('multer');
+const createHttpError = require('http-errors');
+const upload = multer({ dest: 'public/uploads/' });
 
 router.get("/day1", (req, res) => {
   res.render("users/day1");
@@ -25,6 +28,6 @@ router.get("/:id/edit", (req, res) => {
   res.render("users/edit");
 });
 
-router.post("/update", UserController.update);
+router.post("/update", upload.single('profile-picture'), UserController.update);
 
 module.exports = router;
