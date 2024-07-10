@@ -16,14 +16,14 @@
     </div>
     <div class="container">
         <div class="profile-box">
-            <form action="/users/update" method="post">
-            <div class="profile-picture" onclick="document.getElementById('file-input').click();"></div>
-            <input type="file" id="file-input" style="display: none;" accept="image/*" onchange="loadProfilePicture(event)">
-            <input type="text" id="username" name="name" class="username" placeholder="自分のユーザー名" required>
-            <p id="error-message" class="error-message"></p>
-            <textarea class="comment" name="description" placeholder="一言コメント"></textarea>
-            <button class="save-button" onclick="validateAndSubmit()">保存する</button>
-        </form>
+            <form action="/users/update" method="post" enctype="multipart/form-data">
+                <div class="profile-picture" onclick="document.getElementById('file-input').click();"></div>
+                <input type="file" id="file-input" style="display: none;" accept="image/*" onchange="loadProfilePicture(event)">
+                <input type="text" id="username" name="name" class="username" placeholder="自分のユーザー名" required>
+                <p id="error-message" class="error-message"></p>
+                <textarea class="comment" name="description" placeholder="一言コメント"></textarea>
+                <button class="save-button" onclick="validateAndSubmit()">保存する</button>
+            </form>
         </div>
     </div>
     <script>
