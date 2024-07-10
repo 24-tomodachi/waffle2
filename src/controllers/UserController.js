@@ -18,7 +18,22 @@ const UserController = {
     await UserModel.updateById(userId, { name, description });
 
     res.status(201).redirect("/rooms/select-mode/");
-  }
+  },
+
+  handleImageChange:async (event) => {
+    const file = event.target.files[0];
+    const filePath = `profile-images/${file.name}`;
+    const { error } = await supabase.storage
+        .from('profile_images')
+        .upload(filePath, file);
+
+    if (error) {
+        console.error('Upload error:', error.message);
+    } else {
+        console.log('File uploaded successfully:', filePath);
+        document.getElementById('image-path').value = filePath;
+    }
+}
 };
 
 module.exports = UserController;
