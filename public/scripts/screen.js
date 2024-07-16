@@ -9,6 +9,9 @@ const ctx = canvas.getContext("2d");
 
 export let gameState;
 
+const SCREEN_WIDTH = canvas.width;
+const SCREEN_HEIGHT = canvas.height;
+
 const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   gameState.objects.forEach((object) => {
@@ -42,7 +45,7 @@ export const initScreen = async () => {
 }
 
 export const addPlayer = (socketId) => {
-  const player = new Player(socketId, 0, 0, 30, 30);
+  const player = new Player(socketId, 0, 0, 30, 30, null, SCREEN_WIDTH, SCREEN_HEIGHT);
   gameState.registerObject(player);
 }
 
@@ -66,5 +69,3 @@ const loadObstacles = async () => {
   }
   return await response.json();
 };
-
-

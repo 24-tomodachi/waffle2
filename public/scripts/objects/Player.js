@@ -3,15 +3,15 @@ import InteractionState from "../states/InteractionState.js";
 import { gameState } from "../screen.js"; // gameStateへのアクセス
 
 export const SPEED = 3;
-const SCREEN_WIDTH = 1000; // ゲーム画面の幅
-const SCREEN_HEIGHT = 420; // ゲーム画面の高さ
 
 export default class Player extends GameObject {
-  constructor(id, x, y, width, height, imgPath) {
+  constructor(id, x, y, width, height, imgPath, screenWidth, screenHeight) {
     super(x, y, width, height, imgPath);
     this.id = id;
     this.interactionState = new InteractionState();
     this.color = "red";
+    this.screenWidth = screenWidth;
+    this.screenHeight = screenHeight;
   }
 
   update() {
@@ -23,7 +23,7 @@ export default class Player extends GameObject {
         this.y -= SPEED;
       }
     } else if (this.interactionState.getFlag("down")) {
-      if (this.y + this.height + SPEED <= SCREEN_HEIGHT) { // 下端に達していない場合のみ移動
+      if (this.y + this.height + SPEED <= this.screenHeight) { // 下端に達していない場合のみ移動
         this.y += SPEED;
       }
     } else if (this.interactionState.getFlag("left")) {
@@ -31,7 +31,7 @@ export default class Player extends GameObject {
         this.x -= SPEED;
       }
     } else if (this.interactionState.getFlag("right")) {
-      if (this.x + this.width + SPEED <= SCREEN_WIDTH) { // 右端に達していない場合のみ移動
+      if (this.x + this.width + SPEED <= this.screenWidth) { // 右端に達していない場合のみ移動
         this.x += SPEED;
       }
     }
