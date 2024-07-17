@@ -18,13 +18,10 @@ const UserController = {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
+    console.log(req.file);
+
     // TODO: S3 にアップロード
     ProfileImageModel.upload(req.file);
-
-    // TODO: upload が終わったらサーバ上から削除
-    if (tempPath) {
-      fs.unlink(tempPath);
-    }
 
     UserModel.updateById(userId,{name,description});
 

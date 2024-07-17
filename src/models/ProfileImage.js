@@ -8,7 +8,9 @@ const ProfileImageModel = {
     const fileBase64 = decode(file.buffer.toString("base64"));
     const { error } = await supabase.storage
       .from('profile_images')
-      .upload(`/uploads/${file.originalname}`, fileBase64);
+      .upload(`/uploads/${file.originalname}`, fileBase64, {
+        contentType: file.mimetype,
+      });
     if (error) {
       console.error("Error uploading profile image: " + error.message);
     }

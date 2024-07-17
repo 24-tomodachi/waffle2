@@ -3,8 +3,9 @@ const router = express.Router();
 const UserModel = require('../src/models/User');
 const UserController = require("../src/controllers/UserController");
 const multer = require('multer');
-const createHttpError = require('http-errors');
-const upload = multer({ dest: 'public/uploads/' });
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 router.get("/day1", (req, res) => {
   res.render("users/day1");
