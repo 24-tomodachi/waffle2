@@ -31,5 +31,19 @@
         </div>
     <p class="register-link"><a href="/auth/signup">新規会員登録はこちら</a></p>
 </div>
+
+<% if (typeof message !== 'undefined' && message) { %>
+    <div class="popup" id="popup">
+      <img src="/image/check.png" alt="チェックマーク" width="20px">
+      <span><%= message %></span>
+    </div>
+    <script>
+      document.getElementById('popup').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('popup').style.display = 'none';
+      }, 3000);
+    </script>
+  <% } %>
+
 </body>
 </html>

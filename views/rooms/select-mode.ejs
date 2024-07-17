@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>操作選択</title>
-  <link rel="stylesheet" href="/stylesheets/index.css">
+  <link rel="stylesheet" href="/stylesheets/select-mode.css">
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <!--日本語用-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
-
-<body>
+<body class="kosugi-maru-regular">
+  <!--ログアウトのやつ-->
   <%- include('../components/header') %>
-  <div class="button-container">
-    <a class="custom-button" href="/rooms/new">ルーム作成</a>
-    <a class="custom-button" href="/rooms/">ルーム参加</a>
+
+  <div class="button2">
+    <a href="/rooms/new">ルーム作成</a>
+    <a href="/rooms/">ルーム参加</a>
   </div>
+
+  <% if (message) { %>
+    <div class="popup" id="popup">
+      <img src="/image/check.png" alt="チェックマーク" width="20px">
+      <span><%= message %></span>
+    </div>
+    <script>
+      document.getElementById('popup').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('popup').style.display = 'none';
+      }, 3000);
+    </script>
+  <% } %>
+
 </body>
 </html>

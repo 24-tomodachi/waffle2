@@ -93,3 +93,23 @@ button:hover {
     overflow-wrap: normal; /* 折り返しを有効にするyooo */
     white-space: pre-line; /* 改行を保持して折り返しを有効にするyooo */
 }
+
+/* ポップアップのスタイル */
+.popup {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #A0522D; /* Light brown color */
+    padding: 10px 20px;
+    color: white;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popup img {
+    margin-right: 10px;
+  }
