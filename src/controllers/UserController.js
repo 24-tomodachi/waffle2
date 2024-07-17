@@ -3,11 +3,11 @@ const UserModel = require("../models/User");
 const ProfileImageModel = require("../models/ProfileImage");
 
 const UserController = {
-    /**
-   * ユーザーの情報を更新する。
-   * @param {Request} req
-   * @param {Response} res
-   */
+  /**
+ * ユーザーの情報を更新する。
+ * @param {Request} req
+ * @param {Response} res
+ */
   update: async (req, res) => {
     const { name, description } = req.body;
     const userId = req.userId;
@@ -19,7 +19,7 @@ const UserController = {
     ProfileImageModel.upload(req.file)
       .then(filepath => {
         // TODO: userカラムにfilepathを保存
-        UserModel.updateById(userId,{name,description});
+        UserModel.updateById(userId, { name, description, icon_path: filepath });
       })
       .catch(error => {
         console.error(error);
@@ -27,7 +27,7 @@ const UserController = {
       });
 
     res.status(201).redirect("/rooms/select-mode/");
-    }
   }
+}
 
-  module.exports = UserController
+module.exports = UserController
