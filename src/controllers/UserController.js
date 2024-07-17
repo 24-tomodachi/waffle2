@@ -1,9 +1,6 @@
 const { Request, Response } = require("express");
 const UserModel = require("../models/User");
-const fs = require('fs').promises;
-const path = require('path');
 const ProfileImageModel = require("../models/ProfileImage");
-const { decode } = require("base64-arraybuffer");
 
 const UserController = {
     /**
@@ -18,12 +15,16 @@ const UserController = {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
-    console.log(req.file);
-
-    // TODO: S3 にアップロード
-    ProfileImageModel.upload(req.file);
-
-    UserModel.updateById(userId,{name,description});
+    // TODO: 画像が空の場合に対応
+    ProfileImageModel.upload(req.file)
+      .then(filepath => {
+        // TODO: userカラムにfilepathを保存
+        UserModel.updateById(userId,{name,description});
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      });
 
     res.status(201).redirect("/rooms/select-mode/");
     }
