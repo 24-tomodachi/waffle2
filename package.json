@@ -27,6 +27,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "base64-arraybuffer": "^1.0.2",
     "jest": "^29.7.0",
     "nodemon": "^3.1.0"
   }
