@@ -9,8 +9,8 @@ const ctx = canvas.getContext("2d");
 
 export let gameState;
 
-const SCREEN_WIDTH = canvas.width;
-const SCREEN_HEIGHT = canvas.height;
+export const SCREEN_WIDTH = canvas.width;
+export const SCREEN_HEIGHT = canvas.height;
 
 const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -45,7 +45,7 @@ export const initScreen = async () => {
 }
 
 export const addPlayer = (socketId) => {
-  const player = new Player(socketId, 0, 0, 30, 30, null, SCREEN_WIDTH, SCREEN_HEIGHT);
+  const player = new Player(socketId, 0, 0, 30, 30, null);
   gameState.registerObject(player);
 }
 
