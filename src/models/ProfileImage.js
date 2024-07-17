@@ -6,16 +6,26 @@ const ProfileImageModel = {
     const fileBase64 = decode(file.buffer.toString("base64"));
     const filename = `${Date.now()}.${file.mimetype.split("/")[1]}`;
     const filepath = `/icons/${filename}`;
-    const { error } = await supabase.storage
+
+    var { data, error } = await supabase.storage
       .from('profile_images')
       .upload(filepath, fileBase64, {
         contentType: file.mimetype,
       });
     if (error) {
       console.error("Error uploading profile image: " + error.message);
+      return null;
     }
 
-    return filepath;
+    var { data, error } = await supabase.storage
+      .from('profile_images')
+      .getPublicUrl(filepath);
+    if (error) {
+      console.error("Error getting public URL: " + error.message);
+      return null;
+    }
+
+    return data.publicUrl;
   }
 }
 
