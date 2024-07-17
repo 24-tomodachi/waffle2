@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const AuthController = require('../src/controllers/AuthController');
 
-router.get("/signin", (req, res) => {
-  res.render("auth/signin");
-})
+router.get('/signin', (req, res) => {
+  const message = req.query.message;
+  console.log(message);
+  res.render('auth/signin', { message });
+});
 
 router.post("/signin", AuthController.signin);
 
