@@ -2,6 +2,7 @@ const { Request, Response } = require("express");
 const UserModel = require("../models/User");
 const fs = require('fs').promises;
 const path = require('path');
+const ProfileImageModel = require("../models/ProfileImage");
 
 const UserController = {
     /**
@@ -12,16 +13,15 @@ const UserController = {
   update: async (req, res) => {
     const { name, description } = req.body;
     const userId = req.userId;
-    console.log(userId);
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
     // TODO: 画像は変更しない場合にも対応
-    let profilePicturePath = null;
+    console.log(req.file);
+    let profilePicturePath, tempPath;
     if (req.file) {
-      console.log(req.file);
-      const tempPath = req.file.path;
+      tempPath = req.file.path;
       const targetPath = path.join(__dirname, "../../public/uploads/", req.file.originalname);
 
       try {
@@ -35,7 +35,13 @@ const UserController = {
     }
 
     // TODO: S3 にアップロード
+    console.log(req.file);
+    await ProfileImageModel.upload(req.file);
+
     // TODO: upload が終わったらサーバ上から削除
+    if (tempPath) {
+      await fs.unlink(tempPath);
+    }
 
     await UserModel.updateById(userId,{name,description});
 
