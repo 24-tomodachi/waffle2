@@ -77,7 +77,7 @@ const AuthController = {
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.cookie('token', token);
 
-    res.status(200).redirect('/rooms/select-mode');
+    res.status(200).redirect('/rooms/select-mode?message=ログインしました');
   },
 
   verifyEmail: async (req, res) => {
@@ -101,7 +101,8 @@ const AuthController = {
       res.clearCookie('token');
     }
 
-    res.status(200).redirect('/auth/signin');
+    res.status(200).redirect('/auth/signin?message=ログアウトしました');
+
   }
 }
 

@@ -29,3 +29,8 @@
 .sidebar button:hover {
   background-color: #0056b3;
 }
+body {
+  overflow: hidden;
+  background-image: url('/image/background.jpg'); /* 背景画像のパスを設定 */
+  background-repeat: repeat;                /* 背景の繰り返し設定 */
+}

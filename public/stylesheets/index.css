@@ -42,6 +42,26 @@ body {
   height: fit-content;
 }
 
+/*戻るボタン*/
+.button2 {
+  width: fit-content;
+  margin-top: 2em;
+}
+
+.button2 a {
+  padding: 10px;
+  background-color: #ffeca1;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  color: #A16452;
+  text-decoration: none;
+}
+
+.button2 a:hover {
+  background-color: #d2c385;
+}
 
 .margin {
   margin: 130px;

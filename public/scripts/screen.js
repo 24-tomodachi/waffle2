@@ -3,11 +3,15 @@ import CollidableObject from "./objects/CollidableObject.js";
 import Player from "./objects/Player.js";
 import { handleKeyDown } from "./handlers/handleKeyDown.js";
 import { handleKeyUp } from "./handlers/handleKeyUp.js";
+import imageMap from "./imageMap.js";
 
 const canvas = document.getElementById("screen");
 const ctx = canvas.getContext("2d");
 
 export let gameState;
+
+export const SCREEN_WIDTH = canvas.width;
+export const SCREEN_HEIGHT = canvas.height;
 
 const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -21,7 +25,8 @@ const draw = () => {
     }
   });
   window.requestAnimationFrame(draw);
-}
+};
+
 
 const registerEvents = () => {
   window.addEventListener("keydown", handleKeyDown);
@@ -31,10 +36,7 @@ const registerEvents = () => {
 export const initScreen = async () => {
   registerEvents();
 
-  const obstaclesJson = await loadObstacles();
-  const obstacles = obstaclesJson.map((obstacle) => {
-    return new CollidableObject(obstacle.x, obstacle.y, obstacle.width, obstacle.height, obstacle.imgPath);
-  });
+  const obstacles = await loadObstacles();
 
   gameState = new GameState();
   gameState.registerObjects(obstacles);
@@ -42,7 +44,7 @@ export const initScreen = async () => {
 }
 
 export const addPlayer = (socketId) => {
-  const player = new Player(socketId, 0, 0, 30, 30);
+  const player = new Player(socketId, 0, 0, 30, 30, null);
   gameState.registerObject(player);
 }
 
@@ -59,12 +61,26 @@ export const getPlayer = (socketId) => {
   return gameState.objects.find((object) => object.id === socketId);
 }
 
+const getImagePath = (name) => {
+  if (!name) return null;
+  for (const [key, value] of Object.entries(imageMap)) {
+    if (name.includes(key)) {
+      return value;
+    }
+  }
+  return null;  // 画像が見つからない場合のデフォルト値
+};
+
 const loadObstacles = async () => {
   const response = await fetch('/api/map');
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-  return await response.json();
+  const obstaclesJson = await response.json();
+  console.log(obstaclesJson);
+  
+  return obstaclesJson.map((obstacle) => {
+    const imgPath = getImagePath(obstacle.name);
+    return new CollidableObject(obstacle.x, obstacle.y, obstacle.width, obstacle.height, imgPath);
+  });
 };
-
-
