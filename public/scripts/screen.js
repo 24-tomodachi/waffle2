@@ -44,7 +44,7 @@ export const initScreen = async () => {
 }
 
 export const addPlayer = (socketId) => {
-  const player = new Player(socketId, 0, 0, 30, 30, null);
+  const player = new Player(socketId, 0, 0, 30, 30,'/image/check.png');
   gameState.registerObject(player);
 }
 

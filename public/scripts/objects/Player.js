@@ -10,7 +10,14 @@ export default class Player extends GameObject {
     this.id = id;
     this.interactionState = new InteractionState();
     this.color = "red";
+
+  if (imgPath) {
+    this.img = new Image();
+    this.img.src = imgPath;
+  } else {
+    this.img = null;
   }
+}
 
   update() {
     const originalX = this.x;
