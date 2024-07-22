@@ -1,11 +1,11 @@
 body {
-  margin: 150px;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-image: url('/image/waffle1.png');  
   background-size: cover;
   background-attachment: fixed;
+  margin: 0;
 }
 
 /*フォント英語専用*/
@@ -45,7 +45,7 @@ body {
 /*戻るボタン*/
 .button2 {
   width: fit-content;
-  margin-top: 2em;
+  margin-top: -30px;
 }
 
 .button2 a {
@@ -57,6 +57,7 @@ body {
   cursor: pointer;
   color: #A16452;
   text-decoration: none;
+  margin-left: 83px;
 }
 
 .button2 a:hover {
@@ -64,7 +65,8 @@ body {
 }
 
 .margin {
-  margin: 130px;
+  margin: 200px;
+  margin-top: 90px;
 }
 
 .flex {
