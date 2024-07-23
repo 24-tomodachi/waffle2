@@ -44,7 +44,7 @@ export const initScreen = async () => {
 }
 
 export const addPlayer = (socketId) => {
-  const player = new Player(socketId, 0, 0, 30, 30,'/image/check.png');
+  const player = new Player(socketId, 0, 0, 30, 30,'https://btomwxhenxidjudolnzs.supabase.co/storage/v1/object/public/profile_images/icons/default.png');
   gameState.registerObject(player);
 }
 
