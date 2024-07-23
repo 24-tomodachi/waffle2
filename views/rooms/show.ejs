@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    <%= room.name %>
-  </title>
+  <title><%= room.name %></title>
   <link rel="stylesheet" href="/stylesheets/room/show.css">
 
   <!-- for canvas -->
   <script src="/socket.io/socket.io.js"></script>
   <script type="module" src="/scripts/main.js" defer></script>
+  <script src="/scripts/sidebarToggle.js" defer></script> <!-- サイドバーのトグルスクリプトを追加 -->
 </head>
-
 <body>
-    <canvas id="screen" width="1000" height="420"></canvas>
+  <div class="container">
+    <div class="sidebar hidden" id="sidebar">
+        <a href="/rooms/leave/<%= room.id %>">ルーム退出</a>
+        <a href="/auth/signout">プロフィール更新</a>
+        <a href="/auth/signout">ログアウト</a>
+    </div>
+    <div class="content">
+      <button id="sidebar-toggle" class="toggle-button">&gt;</button> <!-- トグルボタンを追加 -->
+      <canvas id="screen" width="1000" height="420"></canvas>
+    </div>
+  </div>
 </body>
-
 </html>
