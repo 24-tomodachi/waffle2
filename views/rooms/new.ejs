@@ -7,20 +7,26 @@
   <link rel="stylesheet" href="/stylesheets/new.css">
 </head>
 <body>
-  <%- include('../components/header') %>
-  <div class="container">
-  <form action="/rooms/create" method="post">
-    <label for="name">ルーム名</label>
-    <input type="text" id="name" name="name" required>
+  <header>
+    <div class="logout-button-container">
+      <a href="/auth/signout" class="logout-button">ログアウト</a>
+    </div>
+  </header>
+  <div class="main-container">
+    <div class="container">
+      <form action="/rooms/create" method="post">
+        <label for="name">ルーム名</label>
+        <input type="text" id="name" name="name" required>
 
-    <label for="description">ルーム説明</label>
-    <textarea id="description" name="description"></textarea>
+        <label for="description">ルーム説明</label>
+        <textarea id="description" name="description"></textarea>
 
-    <div class="buttons">
-    <a href="/rooms/select-mode" class="button">戻る</a>
-    <input type="submit" value="作成" class="button">
+        <div class="buttons">
+          <a href="/rooms/select-mode" class="button">戻る</a>
+          <input type="submit" value="作成" class="button">
+        </div>
+      </form>
+    </div>
   </div>
-  </form>
-</div>
 </body>
 </html>

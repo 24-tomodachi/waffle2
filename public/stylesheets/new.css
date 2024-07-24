@@ -1,61 +1,98 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0c987;
-    margin: 0;
-  }
-  
-  .container {
-    background-color: #8b5a2b;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  label {
-    color: #ffffff;
-    margin: 10px 0 5px;
-  }
-  
-  input[type="text"], textarea {
-    width: 200px;
-    padding: 5px;
-    margin-bottom: 15px;
-    border: 2px solid #ffffff;
-    border-radius: 5px;
-  }
-  
-  textarea {
-    height: 100px;
-    resize: none;
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .button, input[type="submit"] {
-    background-color: #f0c987;
-    color: #8b5a2b;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .button:hover, input[type="submit"]:hover {
-    background-color: #d2a869;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/image/waffle1.png');  
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+}
+
+header {
+  width: 100%;
+  position: absolute;
+  top: 20px; /* 上からのマージンを調整 */
+  left: 20px; /* 左からのマージンを調整 */
+}
+
+.logout-button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logout-button {
+  background-color: #ffeca1;
+  color: #8b5a2b;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #d2a869;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: 60px; /* ヘッダーのスペースを考慮 */
+}
+
+.container {
+  background-color: #8b5a2b;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  color: #ffffff;
+  margin: 10px 0 5px;
+}
+
+input[type="text"], textarea {
+  width: 200px;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.button, input[type="submit"] {
+  background-color: #ffeca1;
+  color: #8b5a2b;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover, input[type="submit"]:hover {
+  background-color: #d2c385;
+}
