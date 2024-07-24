@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .a{fill:#f8de40;} /* 背景色 */
+      .b{fill:#864e20;} /* 目と口の色 */
+      .c{fill:#e7c930;} /* 髪の毛の色 */
+    </style>
+  </defs>
+  <rect class="a" x="1" y="1" width="22" height="22" rx="7.656"/> <!-- 背景 -->
+  <circle class="b" cx="8" cy="8" r="1.5"/> <!-- 左目 -->
+  <circle class="b" cx="16" cy="8" r="1.5"/> <!-- 右目 -->
+  <path class="b" d="M7 12c1-1 2.5-1 4-1s3 0 4 1"/> <!-- 怒った口 -->
+  <path class="c" d="M23 13a14 14 0 0 1-12 6c-5.5 0-6.5-1-9-2.5a7.5 7.5 0 0 0 8-6h6.5a7.5 7.5 0 0 0 8-6Z"/> <!-- 髪の毛 -->
+</svg>

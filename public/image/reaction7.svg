@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .a{fill:#f8de40;}
+      .b{fill:#864e20;}
+      .c{fill:#e7c930;}
+    </style>
+  </defs>
+  <rect class="a" x="1" y="1" width="22" height="22" rx="7.656"/>
+  <circle class="b" cx="8" cy="9" r="1.5"/>
+  <circle class="b" cx="16" cy="9" r="1.5"/>
+  <path class="b" d="M12 13a2 2 0 0 1-1.5-1A2 2 0 0 1 12 10a2 2 0 0 1 1.5 1A2 2 0 0 1 12 13Z"/>
+  <path class="c" d="M23 12a13 13 0 0 1-11 5.5c-5.4 0-6.5-1-9-2.5a7.5 7.5 0 0 0 8-6h6.5a7.5 7.5 0 0 0 8-6Z"/>
+</svg>
