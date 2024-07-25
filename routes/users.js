@@ -24,9 +24,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/:id/edit", (req, res) => {
-  // TODO: 本人以外は編集画面に遷移できないようにする
-  res.render("users/edit");
+router.get("/:id/edit", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.id);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    res.render("users/edit", { user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 router.post("/update", upload.single('profile-picture'), UserController.update);
