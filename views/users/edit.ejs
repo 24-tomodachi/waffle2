@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロフィール更新 | Waffle</title>
+    <link rel="stylesheet" href="/stylesheets/edit.css">
+    <!-- 日本語用 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+</head>
+<body class="kosugi-maru-regular">
+    <div class="header">
+        <h1>プロフィール情報</h1>
+    </div>
+    <div class="container">
+        <div class="profile-box">
+            <form action="/users/updateByBy" method="post" enctype="multipart/form-data">
+                <!-- 元の画像を表示 -->
+                <div class="profile-picture" onclick="document.getElementById('file-input').click();">
+                    <img id="profile-img" src="<%= user.icon_path %>" alt="プロフィール画像">
+                </div>
+                <input type="file" id="file-input" name="profile-picture" style="display: none;" accept="image/*" onchange="loadProfilePicture(event)">
+                <input type="text" id="username" name="name" class="username" placeholder="自分のユーザー名" value="<%= user.name %>" required>
+                <p id="error-message" class="error-message"></p>
+                <textarea class="comment" name="description" placeholder="一言コメント"><%= user.bio %></textarea>
+                <button type="button" class="save-button" onclick="goBack()">更新する</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function loadProfilePicture(event) {
+            const profileImg = document.getElementById('profile-img');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                profileImg.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function goBack() {
+            window.location.href = document.referrer;
+        }
+    </script>
+</body>
+</html>
